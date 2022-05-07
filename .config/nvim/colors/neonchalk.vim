@@ -325,6 +325,7 @@ call s:X("ErrorMsg","","902020","","","DarkRed")
 call s:X("Question","65C254","","","Green","")
 call s:X("Regexp","364ded","","","Purple","")
 call s:X("CocHighlightText", "", "032756", "", "Blue", "")
+call s:X("EndOfBuffer", s:background_color, s:background_color, "", "", "")
 
 hi NonText guifg=bg
 
