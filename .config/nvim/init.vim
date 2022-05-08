@@ -157,7 +157,6 @@ nnoremap <leader>, :bp<CR>
 nnoremap <leader>. :bn<CR>
 
 noremap <C-b> :Toggle<CR>
-noremap <C-.> :CocAction<CR>
 
 nnoremap = +
 nnoremap + =
@@ -187,6 +186,11 @@ inoremap <silent><expr> <Tab>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<Tab>" :
       \ coc#refresh()
+
+" UltiSnips
+let g:UltiSnipsExpandTrigger       = "<C-s>"
+let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
+let g:UltiSnipsJumpForwardTrigger  = "<C-j>"
 
 " === Plugins ======================================================================================== "
 
@@ -229,6 +233,7 @@ Plug 'sheerun/vim-polyglot'                       " Language pack
 Plug 'SirVer/ultisnips'                           " Snippet manager
 Plug 'airblade/vim-gitgutter'                     " Gutter signs for git hunks
 Plug 'haya14busa/incsearch.vim'                   " Better incremental search
+Plug 'honza/vim-snippets'                         " Bunch of pre-built snippets
 Plug 'junegunn/fzf', {'do': { -> fzf#install() }} " FZF integration
 Plug 'junegunn/fzf.vim'                           " FZF integration
 Plug 'kshenoy/vim-signature'                      " Gutter signs for marks
@@ -404,12 +409,6 @@ let g:NERDTreeWinSize             = 42
 let g:NERDTreeMinimalMenu         = 1
 let g:NERDAutoDeleteBuffer        = 1
 let g:NERDTreeMapCustomOpen       = 'o'
-
-" UltiSnips
-
-let g:UltiSnipsExpandTrigger       = "<C-Space>"
-let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
-let g:UltiSnipsJumpForwardTrigger  = "<C-j>"
 
 " Nerd Tree Colors
 

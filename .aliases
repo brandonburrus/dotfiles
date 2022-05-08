@@ -38,6 +38,7 @@ alias mini=minikube
 alias n=npm
 alias py=python3
 alias q=exit
+alias r=ranger
 alias tf=terraform
 alias y=yarn
 alias yarn="yarn -s"

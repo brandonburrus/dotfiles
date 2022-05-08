@@ -45,10 +45,10 @@ plugins=(\
   zsh-vi-mode \
 )
 
-export EDITOR="vim"
+export EDITOR="nvim"
 export GOPATH=$HOME/go
 export M2_PATH=$HOME/.m2
-export MYVIMRC=$HOME/.vimrc
+export MYVIMRC=$HOME/.config/nvim/init.vim
 export MYZSHRC=$HOME/.zshrc
 export ZSH=$HOME/.oh-my-zsh
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#bbbbbb,bg=bold"
