@@ -119,6 +119,7 @@ nnoremap <leader>bf :Buffers<CR>
 nnoremap <leader>cm :Commands<CR>
 nnoremap <leader>co :Commits<CR>
 nnoremap <leader>cp :SClose<CR>
+nnoremap <leader>e :call ToggleNERDTree()<CR>
 nnoremap <leader>f  :CocAction<CR>
 nnoremap <leader>fh :BCommits<CR>
 nnoremap <leader>fl :Files<CR>
@@ -137,7 +138,6 @@ nnoremap <leader>h  :call <SID>show_documentation()<CR>
 nnoremap <leader>mk :Marks<CR>
 nnoremap <leader>mp :Maps<CR>
 nnoremap <leader>no :nohls<CR>
-nnoremap <leader>nt :call ToggleNERDTree()<CR>
 nnoremap <leader>pc :PlugClean<CR>
 nnoremap <leader>pi :PlugInstall<CR>
 nnoremap <leader>pu :PlugUpdate<CR>
@@ -192,6 +192,24 @@ let g:UltiSnipsExpandTrigger       = "<C-s>"
 let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
 let g:UltiSnipsJumpForwardTrigger  = "<C-j>"
 
+
+" === Commands ======================================================================================= "
+
+command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
+
+function TrimWhitespace()
+  if !&binary && &filetype != 'diff'
+    normal mz
+    %s/\s\+$//e
+    normal `zmz
+  endif
+endfunction
+
+" :Trim to trim trailing whitespace
+command! -nargs=0 Trim :call TrimWhitespace()
+command! -nargs=0 T :Trim
+
+
 " === Plugins ======================================================================================== "
 
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
@@ -209,14 +227,17 @@ Plug 'justinmk/vim-sneak'                         " Rebind s to two-letter jump
 Plug 'tpope/vim-surround'                         " Surrounding pairwise characters as a motion
 
 " Actions
+Plug 'AndrewRadev/splitjoin.vim'                  " Split or join expressions
+Plug 'SirVer/ultisnips'                           " Snippet manager
+Plug 'honza/vim-snippets'                         " Bunch of pre-built snippets
 Plug 'jiangmiao/auto-pairs'                       " Auto-close pairwise characters
 Plug 'junegunn/vim-easy-align'                    " Text alignment action
 Plug 'lukelbd/vim-toggle'                         " Make boolean-like words toggleable
-Plug 'sgur/vim-textobj-parameter'                 " Parameters as text objs
+Plug 'terryma/vim-expand-region'                  " Expand the current visual selection
 Plug 'tommcdo/vim-exchange'                       " Swap two text chunks
 Plug 'tpope/vim-commentary'                       " Better commenting
 Plug 'tpope/vim-repeat'                           " Make more things dot repeatable
-Plug 'junegunn/vim-slash'                         " Better search
+Plug 'vim-scripts/loremipsum'                     " Generate lorem ipsum text
 
 " Text Objects
 Plug 'glts/vim-textobj-comment'                   " Comments as a text obj
@@ -224,32 +245,39 @@ Plug 'kana/vim-textobj-entire'                    " Entire buffer as a text obj
 Plug 'kana/vim-textobj-function'                  " Function defs as text objs
 Plug 'kana/vim-textobj-line'                      " Lines as text objs
 Plug 'kana/vim-textobj-user'                      " Core plugin for enabling custom text objs
+Plug 'sgur/vim-textobj-parameter'                 " Parameters as text objs
 
 " Language-specific Integrations
 Plug 'fatih/vim-go'                               " Better Go development
 Plug 'sheerun/vim-polyglot'                       " Language pack
 
-" Editor Enhancements
-Plug 'SirVer/ultisnips'                           " Snippet manager
-Plug 'airblade/vim-gitgutter'                     " Gutter signs for git hunks
+" File Navigation
+Plug 'junegunn/vim-slash'                         " Better search
 Plug 'haya14busa/incsearch.vim'                   " Better incremental search
-Plug 'honza/vim-snippets'                         " Bunch of pre-built snippets
 Plug 'junegunn/fzf', {'do': { -> fzf#install() }} " FZF integration
 Plug 'junegunn/fzf.vim'                           " FZF integration
-Plug 'kshenoy/vim-signature'                      " Gutter signs for marks
+Plug 'scrooloose/nerdtree'                        " Visual file tree explorer
+
+" Git
+Plug 'stsewd/fzf-checkout.vim'                    " Git + FZF integration
+Plug 'tpope/vim-fugitive'                         " Git integration
+Plug 'tpope/vim-rhubarb'                          " GitHub integration for fugitive
+
+" Editor Improvements
 Plug 'mbbill/undotree'                            " Visual tree for undo history
 Plug 'mhinz/vim-startify'                         " Better start screen
 Plug 'neoclide/coc.nvim', {'branch': 'release'}   " Intellisense
 Plug 'qpkorr/vim-bufkill'                         " Better buffer closing
-Plug 'ryanoasis/vim-devicons'                     " Icons
-Plug 'scrooloose/nerdtree'                        " Visual file tree explorer
-Plug 'stsewd/fzf-checkout.vim'                    " Git + FZF integration
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'    " Colors for Nerd Tree
-Plug 'tpope/vim-fugitive'                         " Git integration
+Plug 'tpope/vim-abolish'                          " Auto-fix common spelling mistakes
 Plug 'tpope/vim-obsession'                        " Auto session management
-Plug 'tpope/vim-rhubarb'                          " GitHub integration for fugitive
+
+" Visual
+Plug 'airblade/vim-gitgutter'                     " Gutter signs for git hunks
 Plug 'vim-airline/vim-airline'                    " Better status line
 Plug 'vim-airline/vim-airline-themes'             " Themes for status line
+Plug 'ryanoasis/vim-devicons'                     " Icons
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'    " Colors for Nerd Tree
+Plug 'kshenoy/vim-signature'                      " Gutter signs for marks
 
 call plug#end()
 
@@ -529,6 +557,7 @@ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['proto']      = ''
 let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol                  = ''
 let g:DevIconsDefaultFolderOpenSymbol                                   = ''
 let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol                = ''
+
 
 if exists("g:loaded_webdevicons")
   call webdevicons#refresh()
