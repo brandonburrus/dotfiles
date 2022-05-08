@@ -1,0 +1,134 @@
+snippet doc "Documentation comment"
+/**
+ * ${1:TODO: Add documentation}
+ */
+endsnippet
+
+
+snippet utc "Current UTC Date" i
+`date -u +%FT%TZ`
+endsnippet
+
+
+snippet timesec "Current Unix Date" i
+`date +%s`
+endsnippet
+
+
+snippet uuid "Random UUID" w
+`!p if not snip.c: import uuid; snip.rv = str(uuid.uuid4())`
+endsnippet
+
+
+snippet if "If Statement"
+if ($1) {
+  ${VISUAL}$0
+}
+endsnippet
+
+
+snippet ife "If-Else Statement"
+if ($1) {
+  ${VISUAL}$2
+} else {
+  $0
+}
+endsnippet
+
+
+snippet fun "Function Statement" i
+function $1($2) {
+  ${VISUAL}$0
+}
+endsnippet
+
+
+snippet wh "While Statement"
+while ($1) {
+  ${VISUAL}$0
+}
+endsnippet
+
+
+snippet for "For Statement"
+for ($1) {
+  ${VISUAL}$0
+}
+endsnippet
+
+
+snippet sw "Switch Statement"
+switch ($1) {
+  case $2:
+    ${VISUAL}$0
+}
+endsnippet
+
+
+snippet swd "Switch Statement + Default"
+switch ($1) {
+  case $2:
+    ${VISUAL}$3
+  default:
+    $0
+}
+endsnippet
+
+
+snippet try "Try-Catch Statement"
+try {
+  ${VISUAL}$0
+} catch ($1) {
+  $2
+}
+endsnippet
+
+
+snippet tryf "Try-Catch-Finally Statement"
+try {
+  ${VISUAL}$0
+} catch ($1) {
+  $2
+} finally {
+  $3
+}
+endsnippet
+
+
+snippet cl "Class" i
+class $1 {
+  ${VISUAL}$0
+}
+endsnippet
+
+
+snippet en "Enum"
+enum $1 {
+  ${VISUAL}$0
+}
+endsnippet
+
+
+snippet in "Interface"
+interface $1 {
+  ${VISUAL}$0
+}
+endsnippet
+
+
+snippet shrug "Shrug"
+¯\_(ツ)_/¯
+endsnippet
+
+snippet lorem "Lorem Ipsum"
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+endsnippet
+
+snippet llorem "Long Lorem Ipsum"
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+officia deserunt mollit anim id est laborum.
+endsnippet
