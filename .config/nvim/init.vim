@@ -119,9 +119,10 @@ nnoremap <leader>bf :Buffers<CR>
 nnoremap <leader>cm :Commands<CR>
 nnoremap <leader>co :Commits<CR>
 nnoremap <leader>cp :SClose<CR>
+nnoremap <leader>cr :CocRestart<CR>
 nnoremap <leader>e :call ToggleNERDTree()<CR>
-nnoremap <leader>f  :CocAction<CR>
-nnoremap <leader>fh :BCommits<CR>
+nnoremap <leader>ff  :CocAction<CR>
+nnoremap <leader>fc :BCommits<CR>
 nnoremap <leader>fl :Files<CR>
 nnoremap <leader>g0 :diffget //3<CR>
 nnoremap <leader>g1 :diffget //2<CR>
@@ -484,6 +485,7 @@ let g:NERDTreeExtensionHighlightColor['mod']          = '29BEB0'
 let g:NERDTreeExtensionHighlightColor['sum']          = '29BEB0'
 let g:NERDTreeExtensionHighlightColor['tmpl']         = '29BEB0'
 let g:NERDTreeExtensionHighlightColor['proto']        = '379C9C'
+let g:NERDTreeExtensionHighlightColor['Makefile']     = '0D7C7B'
 
 let g:WebDevIconsDefaultFileSymbolColor               = 'CCCCCC'
 
@@ -553,6 +555,7 @@ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['mod']        = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['sum']        = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['tmpl']       = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['proto']      = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['Makefile']   = ''
 
 let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol                  = ''
 let g:DevIconsDefaultFolderOpenSymbol                                   = ''

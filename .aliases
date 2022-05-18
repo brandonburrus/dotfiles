@@ -32,6 +32,7 @@ alias gsw='git switch'
 alias gt='git -P tag'
 alias gv='git revert'
 alias gw='git worktree'
+alias grpc=grpcurl
 alias kube=kubectl
 alias liq=liquibase
 alias mini=minikube
