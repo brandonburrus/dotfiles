@@ -1,8 +1,9 @@
 alias awk='gawk'
+alias cat='bat'
 alias code='code -r'
 alias d=docker
 alias dotfiles='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
-alias e=mvim
+alias e=nvim
 alias g=git
 alias ga='git add'
 alias gb='git -P branch'
@@ -33,8 +34,8 @@ alias gt='git -P tag'
 alias gv='git revert'
 alias gw='git worktree'
 alias grpc=grpcurl
+alias lgit=lazygit
 alias kube=kubectl
-alias liq=liquibase
 alias mini=minikube
 alias n=npm
 alias py=python3

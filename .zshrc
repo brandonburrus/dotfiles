@@ -53,6 +53,7 @@ export MYZSHRC=$HOME/.zshrc
 export ZSH=$HOME/.oh-my-zsh
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#bbbbbb,bg=bold"
 export ZSH_THEME="agnoster"
+export ZSH_TMUX_AUTOSTART=true
 
 source $ZSH/oh-my-zsh.sh
 
