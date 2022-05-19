@@ -36,6 +36,7 @@ alias gw='git worktree'
 alias grpc=grpcurl
 alias lgit=lazygit
 alias kube=kubectl
+alias make="gmake"
 alias mini=minikube
 alias n=npm
 alias py=python3
