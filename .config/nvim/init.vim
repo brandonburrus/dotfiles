@@ -239,6 +239,7 @@ Plug 'tommcdo/vim-exchange'                       " Swap two text chunks
 Plug 'tpope/vim-commentary'                       " Better commenting
 Plug 'tpope/vim-repeat'                           " Make more things dot repeatable
 Plug 'vim-scripts/loremipsum'                     " Generate lorem ipsum text
+Plug 'matze/vim-move'                             " Move lines up and down
 
 " Text Objects
 Plug 'glts/vim-textobj-comment'                   " Comments as a text obj
@@ -486,6 +487,7 @@ let g:NERDTreeExtensionHighlightColor['sum']          = '29BEB0'
 let g:NERDTreeExtensionHighlightColor['tmpl']         = '29BEB0'
 let g:NERDTreeExtensionHighlightColor['proto']        = '379C9C'
 let g:NERDTreeExtensionHighlightColor['Makefile']     = '0D7C7B'
+let g:NERDTreeExtensionHighlightColor['Caddyfile']    = '0096FF'
 
 let g:WebDevIconsDefaultFileSymbolColor               = 'CCCCCC'
 
@@ -556,11 +558,15 @@ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['sum']        = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['tmpl']       = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['proto']      = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['Makefile']   = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['Caddyfile']  = ''
 
 let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol                  = ''
 let g:DevIconsDefaultFolderOpenSymbol                                   = ''
 let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol                = ''
 
+
+" Move
+let g:move_key_modifier = 'C'
 
 if exists("g:loaded_webdevicons")
   call webdevicons#refresh()

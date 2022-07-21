@@ -28,16 +28,16 @@
     ui = true
 [color "branch"]
     current = yellow reverse
-    local = yello
-    remote = green
+    local = yellow
+    remote = cyan
 [color "diff"]
     meta = yellow bold
     frag = magenta bold
     old = red bold
-    new = green bold
+    new = cyan bold
 [color "status"]
-    added = green bold
-    changed = green
+    added = cyan bold
+    changed = cyan
     untracked = red bold
 [hub]
 	protocol = https

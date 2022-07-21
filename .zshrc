@@ -2,11 +2,12 @@
 clear
 
 plugins=(\
+  zsh-autosuggestions \
+  zsh-syntax-highlighting \
+  zsh-vi-mode \
   ag \
-  autopep8 \
   aws \
   bazel \
-  brew \
   common-aliases \
   copybuffer \
   copyfile \
@@ -14,7 +15,6 @@ plugins=(\
   docker-compose \
   doctl \
   dotenv \
-  fzf \
   gcloud \
   gh \
   git \
@@ -39,9 +39,6 @@ plugins=(\
   terraform \
   tmux \
   yarn \
-  zsh-autosuggestions \
-  zsh-syntax-highlighting \
-  zsh-vi-mode \
 )
 
 export EDITOR="nvim"
