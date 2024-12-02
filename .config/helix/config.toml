@@ -1,0 +1,52 @@
+theme = "gruvbox_dark_hard"
+
+[editor]
+auto-completion = true
+auto-format = true
+auto-pairs = true
+bufferline = "always"
+cursorline = true
+line-number = "relative"
+mouse = false
+popup-border = "all"
+shell = ["zsh", "-c"]
+text-width = 100
+
+[editor.statusline]
+mode.normal = "N"
+mode.insert = "I"
+mode.select = "S"
+left = [
+  "mode", 
+  "spacer", 
+  "version-control", 
+  "spacer", 
+  "file-name", 
+  "file-modification-indicator", 
+  "read-only-indicator", 
+  "diagnostics"
+]
+right = [
+  "spinner", 
+  "register"
+]
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+[editor.soft-wrap]
+enable = true
+
+[editor.indent-guides]
+render = true
+character =  "▏"
+skip-levels = 1
+
+[keys.normal]
+C-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
+C-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
