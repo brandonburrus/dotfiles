@@ -22,8 +22,8 @@ else
   let s:low_color = 1
 endif
 
-let s:background_color = "1A1D20"
-let s:termBlack = "Grey"
+let s:background_color = "#201d26"
+let s:termBlack = "Black"
 let s:overrides = {}
 
 if &t_Co == 88
@@ -260,29 +260,18 @@ endfun
 
 " sets the highlighting for the given group
 fun! s:X(group, fg, bg, attr, lcfg, lcbg)
-  if s:low_color
-    let l:cmd = "hi ".a:group.
-    \ " ctermfg=".s:prefix_highlight_value_with("", a:lcfg).
-    \ " ctermbg=".s:prefix_highlight_value_with("", a:lcbg)
-  else
-    let l:cmd = "hi ".a:group.
-    \ " guifg=".s:prefix_highlight_value_with("#", a:fg).
-    \ " guibg=".s:prefix_highlight_value_with("#", a:bg)
-    if !s:true_color
-      let l:cmd = l:cmd.
-      \ " ctermfg=".s:rgb(a:fg).
-      \ " ctermbg=".s:rgb(a:bg)
-    endif
-  endif
+  let l:cmd = "hi ".a:group.
+  \ " guifg=".s:prefix_highlight_value_with("#", a:fg).
+  \ " guibg=".s:prefix_highlight_value_with("#", a:bg)
+  "  if !s:true_color
+  "    let l:cmd = l:cmd.
+  "    \ " ctermfg=".s:rgb(a:fg).
+  "    \ " ctermbg=".s:rgb(a:bg)
+  "  endif
 
   let l:attr = s:prefix_highlight_value_with("", a:attr)
 
-  if exists("g:jellybeans_use_term_italics") && g:jellybeans_use_term_italics
-    let l:cterm_attr = l:attr
-  else
-    let l:cterm_attr = s:remove_italic_attr(l:attr)
-  endif
-
+  let l:cterm_attr = l:attr
   let l:gui_attr = l:attr
   let l:cmd = l:cmd." gui=".l:gui_attr." cterm=".l:cterm_attr
   exec l:cmd
@@ -292,8 +281,10 @@ call s:X("Normal","e8e8d3",s:background_color,"","Black","")
 call s:X("SignColumn","",s:background_color,"","Black","")
 call s:X("CursorLine","",s:background_color,"","",s:termBlack)
 call s:X("CursorColumn","","1c1c1c","","",s:termBlack)
-call s:X("Pmenu","ffffff","606060","","White",s:termBlack)
-call s:X("PmenuSel","101010","eeeeee","",s:termBlack,"White")
+call s:X("Pmenu","ffffff","1d1924","","White",s:termBlack)
+call s:X("PmenuSbar","ffffff","1d1924","","White",s:termBlack)
+call s:X("PmenuSel","ffffff","18151e","","White",s:termBlack)
+call s:X("PmenuThumb","ffffff","1d1924","","White",s:termBlack)
 call s:X("Visual","","003562","","",s:termBlack)
 call s:X("Search","4398C9","003562","underline","Magenta","")
 call s:X("MatchParen","","","underline","Magenta","")
@@ -310,7 +301,7 @@ call s:X("Title","70b950","","bold","Green","")
 call s:X("Special","da0caa","","italic","Green","")
 call s:X("Statement","da0caa","","italic","DarkBlue","")
 call s:X("Constant","7264ce","","","Red","")
-call s:X("PreProc","cf6a4c","","","LightBlue","")
+call s:X("PreProc","757575","","","LightBlue","")
 call s:X("Delimiter","dddddd","","","Grey","")
 call s:X("String","e8212f","","","Green","")
 call s:X("StringDelimiter","e8212f","","","DarkGreen","")
@@ -318,7 +309,7 @@ call s:X("Identifier","82cb4d","","","LightCyan","")
 call s:X("Structure","8fbfdc","","","LightCyan","")
 call s:X("Function","02a7ff","","","Yellow","")
 call s:X("Type","49c0b6","","","Yellow","")
-" call s:X("NonText","606060",s:background_color,"",s:termBlack,"")
+call s:X("NonText", s:background_color, s:background_color,"",s:termBlack,"")
 call s:X("SpecialKey","444444","1c1c1c","",s:termBlack,"")
 call s:X("Directory","dad085","","","Yellow","")
 call s:X("ErrorMsg","","902020","","","DarkRed")
@@ -327,7 +318,14 @@ call s:X("Regexp","364ded","","","Purple","")
 call s:X("CocHighlightText", "", "032756", "", "Blue", "")
 call s:X("EndOfBuffer", s:background_color, s:background_color, "", "", "")
 
-hi NonText guifg=bg
+call s:X("NvimTreeNormal", "ff0000", s:background_color, "", "", "")
+call s:X("NvimTreePopup", "ff0000", "ff0000", "", "", "")
+call s:X("NvimTreeEndOfBuffer", "ff0000", "ff0000", "", "", "")
+call s:X("NvimTreeSignColumn", "ff0000", "ff0000", "", "", "")
+call s:X("NvimTreeLineNr", "ff0000", "ff0000", "", "", "")
+call s:X("NvimTreeVertSplit", "ff0000", "ff0000", "", "", "")
+
+hi! NonText guifg=bg ctermfg=black ctermbg=black
 
 hi! link SignColumn LineNr
 
@@ -672,8 +670,28 @@ hi! link pbStructure Keyword
 hi! link goVarDefs Identifier
 hi! link goOperator Normal
 hi! link goPredefinedIdentifiers Keyword
-
 hi! link gotplAction Keyword
+
+" C++
+hi link cInclude PreProc
+hi link cIncluded Type
+hi link cppSTLnamespace Type
+hi link cppStructure Keyword
+hi link cOperator Keyword
+hi link cStorageClass Keyword
+
+" Dart
+hi link dartTypedef Keyword
+hi link dartOperator Normal
+hi link dartStorageClass Keyword
+hi link dartInterpolation Identifier
+hi link dartLibrary Keyword
+hi! link FlutterClosingLabel PreProc
+
+hi! link CocInlayHint PreProc
+hi! link CocInlayHintType PreProc
+hi! link CocInlayHintParameter PreProc
+
 
 delf s:X
 delf s:remove_italic_attr
