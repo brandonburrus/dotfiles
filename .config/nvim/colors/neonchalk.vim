@@ -318,12 +318,15 @@ call s:X("Regexp","364ded","","","Purple","")
 call s:X("CocHighlightText", "", "032756", "", "Blue", "")
 call s:X("EndOfBuffer", s:background_color, s:background_color, "", "", "")
 
-call s:X("NvimTreeNormal", "ff0000", s:background_color, "", "", "")
-call s:X("NvimTreePopup", "ff0000", "ff0000", "", "", "")
-call s:X("NvimTreeEndOfBuffer", "ff0000", "ff0000", "", "", "")
-call s:X("NvimTreeSignColumn", "ff0000", "ff0000", "", "", "")
-call s:X("NvimTreeLineNr", "ff0000", "ff0000", "", "", "")
-call s:X("NvimTreeVertSplit", "ff0000", "ff0000", "", "", "")
+hi! link NvimTreeFolderName Function
+hi! link NvimTreeEmptyFolderName Function
+hi! link NvimTreeOpenedFolderName Function
+hi! link NvimTreeSymlinkFolderName Constant
+hi! link NvimTreeOpenedFolderIcon Function
+hi! link NvimTreeClosedFolderIcon Function
+
+hi! link WinSeparator Constant
+call s:X("WinSeparator", "242529", s:background_color, "", s:termBlack, "")
 
 hi! NonText guifg=bg ctermfg=black ctermbg=black
 
