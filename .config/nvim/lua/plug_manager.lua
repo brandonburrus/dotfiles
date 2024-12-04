@@ -60,6 +60,48 @@ local spec = {
                 "coc-tsserver",
                 "coc-yaml",
             }
+            vim.cmd([[
+                inoremap <silent><expr> <c-space> coc#refresh()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+                nmap <silent> [g <Plug>(coc-diagnostic-prev)
+                nmap <silent> ]g <Plug>(coc-diagnostic-next)
+                nmap <silent> gd <Plug>(coc-definition)
+                nmap <silent> gy <Plug>(coc-type-definition)
+                nmap <silent> gi <Plug>(coc-implementation)
+                nmap <silent> gr <Plug>(coc-references)
+                autocmd CursorHold * silent call CocActionAsync('highlight')
+                nmap <leader>rn <Plug>(coc-rename)
+                xmap <leader>a <Plug>(coc-codeaction-selected)
+                nmap <leader>a <Plug>(coc-codeaction-selected)
+                xmap <leader>t <Plug>(coc-codeaction)
+                nmap <leader>t <Plug>(coc-codeaction)
+                nmap <silent> <leader>re <Plug>(coc-codeaction-refactor)
+                xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
+                nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
+                xmap if <Plug>(coc-funcobj-i)
+                omap if <Plug>(coc-funcobj-i)
+                xmap af <Plug>(coc-funcobj-a)
+                omap af <Plug>(coc-funcobj-a)
+                xmap ic <Plug>(coc-classobj-i)
+                omap ic <Plug>(coc-classobj-i)
+                xmap ac <Plug>(coc-classobj-a)
+                omap ac <Plug>(coc-classobj-a)
+
+                inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+                inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+                function! CheckBackspace() abort
+                  let col = col('.') - 1
+                  return !col || getline('.')[col - 1]  =~# '\s'
+                endfunction
+
+                inoremap <silent><expr> <Tab>
+                      \ coc#pum#visible() ? coc#pum#next(1) :
+                      \ CheckBackspace() ? "\<Tab>" :
+                      \ coc#refresh()
+
+                inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+            ]])
         end,
     }
 }
@@ -96,6 +138,7 @@ require("nvim-tree").setup({
     view = {
         width = 40,
         side = "right",
+        signcolumn = "yes"
     },
     filters = {
         dotfiles = true,
