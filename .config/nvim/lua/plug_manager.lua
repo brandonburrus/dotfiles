@@ -7,6 +7,7 @@ local spec = {
     { 'tpope/vim-commentary' },
     { 'tpope/vim-surround' },
     { 'lewis6991/gitsigns.nvim' },
+    { 'nvim-tree/nvim-web-devicons' },
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
@@ -29,6 +30,7 @@ local spec = {
         'nvim-tree/nvim-tree.lua',
         dependencies = {
             'nvim-tree/nvim-web-devicons',
+            -- 'kyazdani42/nvim-web-devicons'
         }
     },
     {
@@ -49,6 +51,7 @@ local spec = {
                 "coc-html",
                 "coc-jest",
                 "coc-json",
+                "coc-pairs",
                 "coc-protobuf",
                 "coc-pyright",
                 -- "coc-rust-analyzer",
@@ -103,7 +106,16 @@ local spec = {
                 inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
             ]])
         end,
-    }
+    },
+    { 'github/copilot.vim' },
+    {
+      "olimorris/codecompanion.nvim",
+      opts = {},
+      dependencies = {
+        "nvim-lua/plenary.nvim",
+        "nvim-treesitter/nvim-treesitter",
+      },
+    },
 }
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -128,6 +140,51 @@ require("lazy").setup({
     checker = { enabled = false },
 })
 
+require('nvim-web-devicons').setup({
+  default = true,
+  strict = true,
+  variant = "dark",
+  override_by_extension = {
+    ["rs"] = {
+      name = "Rust",
+      icon = "",
+      color = "#ce412b"
+    },
+  },
+  override_by_filename = {
+    ["Cargo.toml"] = {
+      name = "CargoToml",
+      icon = "",
+      color = "#a43322"
+    },
+    ["Cargo.lock"] = {
+      name = "CargoLock",
+      icon = "",
+      color = "#535353"
+    },
+    ["README.md"] = {
+      name = "ReadmeMd",
+      icon = "",
+      color = "#888899"
+    },
+    ["package.json"] = {
+      name = "PackageJson",
+      icon = "",
+      color = "#339933"
+    },
+    ["nodemon.json"] = {
+      name = "PackageJson",
+      icon = "",
+      color = "#339933"
+    },
+    ["tsconfig.json"] = {
+      name = "TsconfigJson",
+      icon = "",
+      color = "#007ACC",
+    }
+  }
+})
+
 require("gitsigns").setup()
 
 require("nvim-tree").setup({
@@ -149,7 +206,8 @@ require("nvim-tree").setup({
             padding = "  ",
             show = {
                 folder_arrow = false,
-                git = false
+                git = false,
+                bookmarks = false,
             }
         }
     }
@@ -288,3 +346,15 @@ require('bufferline').setup({
         show_tab_indicators = false,
     }
 })
+
+require("codecompanion").setup({
+  strategies = {
+    chat = {
+      adapter = "anthropic",
+    },
+    inline = {
+      adapter = "anthropic",
+    },
+  },
+})
+

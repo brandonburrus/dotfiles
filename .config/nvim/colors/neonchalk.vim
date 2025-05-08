@@ -503,6 +503,7 @@ hi! link jsonKeyword Identifier
 hi! link jsStorageClass Keyword
 hi! link jsArrowFunction Keyword
 hi! link jsModuleAs Keyword
+hi! link typescriptKeywordOp Keyword
 
 " TypeScript
 hi! link typescriptBraces Delimiter
@@ -608,17 +609,27 @@ hi! link vimOper Normal
 
 " HTML
 hi! link htmlTag Normal
+hi! link @tag.delimiter.html Normal
 hi! link htmlEndTag htmlTag
 hi! link htmlArg Identifier
+hi! link @tag.attribute.html Identifier
 hi! link htmlTagName Function
+hi! link @tag.html Function
 hi! link htmlSpecialTagName Function
 hi! link htmlTitle Normal
+hi! link @operator.html Normal
 hi! link htmlH1 Normal
 hi! link htmlH2 Normal
 hi! link htmlH3 Normal
 hi! link htmlH4 Normal
 hi! link htmlH5 Normal
 hi! link htmlH6 Normal
+hi! link @markup.heading.1.html Normal
+hi! link @markup.heading.2.html Normal
+hi! link @markup.heading.3.html Normal
+hi! link @markup.heading.4.html Normal
+hi! link @markup.heading.5.html Normal
+hi! link @markup.heading.6.html Normal
 
 " XML
 hi! link xmlTag Normal

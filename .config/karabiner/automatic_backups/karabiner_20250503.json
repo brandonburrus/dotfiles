@@ -1,5 +1,4 @@
 {
-    "global": { "enable_notification_window": false },
     "profiles": [
         {
             "complex_modifications": {
@@ -306,7 +305,6 @@
             ],
             "virtual_hid_keyboard": {
                 "country_code": 0,
-                "indicate_sticky_modifier_keys_state": false,
                 "keyboard_type_v2": "ansi"
             }
         }
