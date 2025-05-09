@@ -1,29 +1,109 @@
 -- Visually display open buffers at the top of the editor
 return {
-  'romgrk/barbar.nvim',
-  opts = {
-    animation = false,
-    clickable = false,
-    icons = {
-      buffer_index = false,
-      buffer_number = false,
-      button = '',
-      -- diagnostics = {
-      --   [vim.diagnostic.severity.ERROR] = { enabled = true, icon = '' },
-      --   [vim.diagnostic.severity.WARN] = { enabled = true, icon = '' },
-      --   [vim.diagnostic.severity.INFO] = {enabled = false},
-      --   [vim.diagnostic.severity.HINT] = {enabled = false},
-      -- },
-      gitsigns = {
-        added = {enabled = true, icon = '+'},
-        changed = {enabled = true, icon = '~'},
-        deleted = {enabled = true, icon = '-'},
-      },
-      separator = {
-        left = '',
-        right = '',
-      },
-      separator_at_end = false,
+  'akinsho/bufferline.nvim',
+  config = function()
+    local bg = '#201D26'
+    local defaultObj = {
+        fg = 'white',
+        bg = bg
     }
-  }
+    require('bufferline').setup({
+      highlights = {
+        fill = {
+          fg = 'white',
+          bg = '#1b1820'
+        },
+        background = {
+          fg = 'white',
+          bg = bg
+        },
+        buffer_visible = {
+          fg = 'white',
+          bg = bg,
+          italic = false
+        },
+        buffer_selected = {
+          fg = 'white',
+          bg = bg,
+          italic = false
+        },
+        tab = defaultObj,
+        numbers = defaultObj,
+        numbers_selected = defaultObj,
+        diagnostic = defaultObj,
+        diagnostic_visible = defaultObj,
+        diagnostic_selected = defaultObj,
+        hint = defaultObj,
+        hint_visible = defaultObj,
+        hint_selected = defaultObj,
+        hint_diagnostic = defaultObj,
+        hint_diagnostic_visible = defaultObj,
+        hint_diagnostic_selected = defaultObj,
+        info = defaultObj,
+        info_visible = defaultObj,
+        info_selected = defaultObj,
+        info_diagnostic = defaultObj,
+        info_diagnostic_visible = defaultObj,
+        info_diagnostic_selected = defaultObj,
+        warning = defaultObj,
+        warning_visible = defaultObj,
+        warning_selected = defaultObj,
+        warning_diagnostic = defaultObj,
+        warning_diagnostic_visible = defaultObj,
+        warning_diagnostic_selected = defaultObj,
+        error = defaultObj,
+        error_visible = defaultObj,
+        error_selected = defaultObj,
+        error_diagnostic = defaultObj,
+        error_diagnostic_visible = defaultObj,
+        error_diagnostic_selected = defaultObj,
+        modified = defaultObj,
+        modified_visible = defaultObj,
+        modified_selected = defaultObj,
+        duplicate_selected = defaultObj,
+        duplicate_visible = defaultObj,
+        duplicate = defaultObj,
+        separator_selected = {
+          fg = bg,
+          bg = bg
+        },
+        separator_visible = {
+          fg = bg,
+          bg = bg
+        },
+        separator = {
+          fg = bg,
+          bg = bg
+        },
+        indicator_selected = {
+          fg = '#02a7ff',
+          bg = bg
+        },
+        pick_selected = {
+          fg = bg,
+          bg = bg,
+          italic = false
+        },
+        pick_visible = {
+          fg = bg,
+          bg = bg,
+          italic = false
+        },
+        pick = {
+          fg = bg,
+          bg = bg,
+          italic = false
+        },
+        offset_separator = defaultObj
+      },
+      options = {
+        buffer_close_icon = '',
+        close_icon = '',
+        diagnostics = 'coc',
+        show_buffer_close_icons = false,
+        show_close_icon = false,
+        show_tab_indicators = false,
+      }
+    })
+  end
 }
