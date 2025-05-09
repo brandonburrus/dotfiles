@@ -29,7 +29,6 @@ return {
         'json',
         'toml',
         'yaml',
-        'caddy',
         'csv',
         'dart',
         'dockerfile',
