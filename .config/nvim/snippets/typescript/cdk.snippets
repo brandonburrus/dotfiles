@@ -1,0 +1,31 @@
+# Construct
+snippet co "Custom CDK construct"
+  class ${1} extends Construct {
+    constructor(id: string, scope: Construct) {
+      super(id, scope);
+
+      ${0}
+    }
+  }
+
+# Construct with props
+snippet cop "Custom CDK construct with props"
+  interface ${1}Props {
+    ${2}
+  }
+
+  class ${1} extends Construct {
+    constructor(id: string, scope: Construct, private props?: ${1}Props) {
+      super(id, scope);
+
+      ${3}
+    }
+  }
+
+# Import constructs
+snippet imc "Constructs Imports"
+  import { Construct } from 'constructs';
+
+# Import AWS CDK
+snippet imca "AWS Imports"
+  import { ${2} } from 'aws-cdk/aws-cdk-${1}';

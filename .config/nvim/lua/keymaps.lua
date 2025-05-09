@@ -1,20 +1,38 @@
-vim.g.mapleader = " "
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
-vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<cr>', { silent = true })
-vim.keymap.set('n', '<leader>q', '<cmd>q<cr>', { silent = true })
-vim.keymap.set('n', '<leader>w', '<cmd>BD<cr>', { silent = true })
-vim.keymap.set('n', '<leader>,', '<cmd>bp<cr>', { silent = true })
-vim.keymap.set('n', '<leader>.', '<cmd>bn<cr>', { silent = true })
-vim.keymap.set('n', '<leader>no', '<cmd>nohls<cr>', { silent = true })
+local leader_cmd_maps = {
+  ['e'] = 'NvimTreeToggle',
+  ['t'] = 'Toggle',
+  ['w'] = 'BufferClose',
+  [','] = 'BufferPrevious',
+  ['.'] = 'BufferNext',
+  ['p'] = 'BufferPick',
+  ['no'] = 'nohls',
+  ['l'] = 'Lazy',
+  ['3'] = 'set relativenumber!',
+  ['co'] = 'Copilot panel',
+  ['cs'] = 'Copilot status',
+  ['ce'] = 'Copilot enable',
+  ['cd'] = 'Copilot disable',
+  ['o'] = 'Telescope smart_open',
+  ['ff'] = 'Telescope find_files',
+  ['fg'] = 'Telescope live_grep',
+  ['fr'] = 'Telescope registers',
+  ['fm'] = 'Telescope marks',
+  ['fk'] = 'Telescope keymaps',
+  ['fb'] = 'Telescope buffers',
+  ['fr'] = 'Telescope lsp_references',
+  ['fs'] = 'Telescope lsp_symbols',
+  ['gh'] = 'GBrowse',
+  ['gf'] = 'NvimTreeFindFile',
+  ['u'] = 'UndotreeToggle',
+}
 
-vim.keymap.set('n', '<leader>ct', '<cmd>:CodeCompanionChat Toggle<cr>', { silent = true })
-vim.keymap.set('n', '<leader>c?', '<cmd>:CodeCompanionChat Query<cr>', { silent = true })
-vim.keymap.set('n', '<leader>cc', '<cmd>:CodeCompanionChat<cr>', { silent = true })
-vim.keymap.set('n', '<leader>ca', '<cmd>:CodeCompanionActions<cr>', { silent = true })
-
-vim.keymap.set('i', '<leader>g', 'copilot#Accept("\\<CR>")', {
-  expr = true,
-  replace_keycodes = false
-})
-vim.g.copilot_no_tab_map = true
-
+for key, mapping in pairs(leader_cmd_maps) do
+  vim.keymap.set('n', '<leader>'..key, '<cmd>'..mapping..'<cr>', {
+    silent = true,
+    noremap = true,
+  })
+end

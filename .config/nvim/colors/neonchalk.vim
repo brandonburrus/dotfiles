@@ -706,6 +706,16 @@ hi! link CocInlayHint PreProc
 hi! link CocInlayHintType PreProc
 hi! link CocInlayHintParameter PreProc
 
+highlight! link CmpItemAbbrDeprecated PreProc
+highlight! link CmpItemAbbrMatchFuzzy Normal
+highlight! link CmpItemKindVariable Identifier
+highlight! link CmpItemKindInterface Type
+highlight! link CmpItemKindText Identifier
+highlight! link CmpItemKindFunction Function
+highlight! link CmpItemKindMethod Function
+highlight! link CmpItemKindKeyword Keyword
+highlight! link CmpItemKindProperty Identifier
+highlight! link CmpItemKindUnit Type
 
 delf s:X
 delf s:remove_italic_attr

@@ -19,12 +19,12 @@ vim.opt.splitright = true
 vim.opt.undofile = false
 vim.opt.undolevels = 10000
 
-vim.opt.guicursor = "a:blinkon0,n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
+vim.opt.guicursor = 'a:blinkon0,n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20'
 vim.opt.cursorline = false
 vim.opt.laststatus = 0
 
 vim.opt.wildmenu = true
-vim.opt.completeopt = "preview,menu,popup" --noinsert?
+vim.opt.completeopt = 'preview,menu,popup'
 
 vim.opt.autoread = true
 vim.opt.backup = false
@@ -33,40 +33,45 @@ vim.opt.scrolloff = 0
 vim.opt.hidden = true
 vim.opt.modelines = 1
 
-vim.opt.belloff = "all"
+vim.opt.belloff = 'all'
 vim.opt.errorbells = false
 vim.opt.visualbell = false
 
 vim.opt.foldlevelstart = 99
-vim.opt.foldmethod = "indent"
+vim.opt.foldmethod = 'indent'
 
 vim.opt.cmdheight = 1
-vim.opt.shell = "/bash/zsh"
-vim.opt.shortmess = "a"
+vim.opt.shell = '/bash/zsh'
+vim.opt.shortmess = 'a'
 vim.opt.showcmd = true
 vim.opt.exrc = true
 vim.opt.secure = true
 
 vim.opt.ruler = false
 vim.opt.showmode = false
-vim.opt.signcolumn = "yes"
+vim.opt.signcolumn = 'yes'
 
 vim.opt.lazyredraw = true
 vim.opt.linespace = 2
 vim.opt.modelines = 0
 
-vim.opt.spell = false --TODO: Figure out spell checker
-vim.opt.sessionoptions = "buffers,curdir,folds,help,tabpages,winsize,terminal"
-vim.opt.updatetime = 400
+vim.opt.spell = false
+vim.opt.sessionoptions = 'buffers,curdir,folds,help,tabpages,winsize,terminal'
+vim.opt.updatetime = 200
 
-vim.opt.fillchars = "eob: "
+vim.opt.fillchars = 'eob: '
 vim.opt.termguicolors = true
-vim.opt.mouse = ""
+vim.opt.mouse = ''
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-vim.cmd 'colorscheme neonchalk'
+vim.diagnostic.config {
+  virtual_text = true,
+  update_in_insert = true,
+}
+
+vim.cmd.colorscheme 'neonchalk'
 
 require 'keymaps'
-require 'plug_manager'
+require 'plugin_manager'
