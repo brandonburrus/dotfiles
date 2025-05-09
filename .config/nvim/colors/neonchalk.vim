@@ -84,7 +84,7 @@ hi! link @constructor.lua Normal
 hi! link DiagnosticError ErrorRed
 hi! link DiagnosticWarn Orange
 hi! link DiagnosticInfo SearchBlue
-hi! link DiagnosticHint SearchBlue
+hi! link DiagnosticHint Grey
 hi! link DiagnosticUnnecessary Grey
 hi! link LspCodeLens SearchBlue
 

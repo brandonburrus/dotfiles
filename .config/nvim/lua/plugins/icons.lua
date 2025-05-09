@@ -1,7 +1,6 @@
 -- Pretty icons
 return {
   'nvim-tree/nvim-web-devicons',
-  'stevearc/dressing.nvim',
   config = function()
     require 'nvim-web-devicons'.setup {
       default = true,
@@ -27,8 +26,8 @@ return {
         },
         ["README.md"] = {
           name = "ReadmeMd",
-          icon = "",
-          color = "#888899"
+          icon = "",
+          color = "#41b645"
         },
         ["package.json"] = {
           name = "PackageJson",
@@ -47,5 +46,6 @@ return {
         }
       }
     }
-  end
+  end,
+  'stevearc/dressing.nvim',
 }

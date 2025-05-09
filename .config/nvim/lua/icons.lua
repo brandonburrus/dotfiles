@@ -2,7 +2,7 @@ return {
   diagnostic = {
     Error = " ",
     Warn = " ",
-    Hint = " ",
+    Hint = " ",
     Info = " "
   }
 }
