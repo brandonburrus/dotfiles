@@ -28,7 +28,6 @@ hi DarkGrey   guifg=#3b3b40
 hi LightGrey  guifg=#bababa
 hi Delimiter  guifg=#dddddd
 
-
 hi! Keyword       guifg=#da0caa cterm=italic gui=italic
 hi! WinSeparator  guifg=#242529 guibg=#201d26
 hi! VertSplit     guifg=#242529 guibg=#201d26
@@ -80,6 +79,12 @@ hi! link @constant.builtin.typescript Keyword
 hi! link @lsp.type.regexp Regex
 hi! link @punctuation.special.vim Keyword
 hi! link @constructor.lua Normal
+hi! link @constructor.typescript Keyword
+hi! link @punctuation.special.typescript Regex
+hi! link @variable.builtin.typescript Keyword
+hi! link @lsp.typemod.property.declaration.typescript Purple
+hi! link @character.special.typescript Keyword
+hi! link @boolean.typescript Keyword
 
 hi! link DiagnosticError ErrorRed
 hi! link DiagnosticWarn Orange
