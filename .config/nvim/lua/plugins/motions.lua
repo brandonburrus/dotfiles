@@ -10,6 +10,7 @@ return {
   'matze/vim-move', -- Move lines up and down
   'tpope/vim-repeat', -- Make more things repeatable with .
   'lukelbd/vim-toggle', -- Toggle "boolean"-like words
+  'tommcdo/vim-exchange', -- Swap two selections
   {
     'jinh0/eyeliner.nvim', -- Show quick indicators when using f/t
     config = function()

@@ -2,6 +2,7 @@
 return {
   'nvim-tree/nvim-tree.lua',
   config = function()
+    local icons = require 'icons'
     require 'nvim-tree'.setup {
       disable_netrw = true,
       sort = {
@@ -36,10 +37,10 @@ return {
           max = vim.diagnostic.severity.ERROR,
         },
         icons = {
-          hint = "",
-          info = "",
-          warning = "",
-          error = "",
+          error = icons.diagnostic.Error,
+          warning = icons.diagnostic.Warn,
+          info = icons.diagnostic.Info,
+          hint = icons.diagnostic.Hint,
         },
       },
     }

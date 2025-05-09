@@ -5,9 +5,9 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 local leader_cmd_maps = {
   ['e'] = 'NvimTreeToggle',
   ['t'] = 'Toggle',
-  ['w'] = 'BufferClose',
-  [','] = 'BufferPrevious',
-  ['.'] = 'BufferNext',
+  ['w'] = 'BD',
+  [','] = 'bp',
+  ['.'] = 'bn',
   ['p'] = 'BufferPick',
   ['no'] = 'nohls',
   ['l'] = 'Lazy',
@@ -36,3 +36,10 @@ for key, mapping in pairs(leader_cmd_maps) do
     noremap = true,
   })
 end
+
+vim.keymap.set('n', '<leader>rr', '<cmd>source $HOME/.config/nvim/init.lua<cr>')
+vim.keymap.set('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>', { silent = true })
+vim.keymap.set('n', '<leader>a', '<cmd>lua vim.lsp.buf.code_action()<cr>', { silent = true })
+
+vim.keymap.set('n', '<Up>', '<cmd>resize +2<cr>', { silent = true, remap = false })
+vim.keymap.set('n', '<Down>', '<cmd>resize -2<cr>', { silent = true, remap = false })
