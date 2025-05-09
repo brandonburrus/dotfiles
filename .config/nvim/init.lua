@@ -69,32 +69,32 @@ vim.g.loaded_netrwPlugin = 1
 local icons = require 'icons'
 
 vim.diagnostic.config({
-	virtual_text = false,
+  virtual_text = false,
   update_in_insert = true,
-	underline = true,
-	signs = true,
-	severity_sort = true,
-	float = {
-		border = "rounded",
-		source = "if_many",
-		header = "",
-		prefix = function(d)
-			local d_icon = {
-				[vim.diagnostic.severity.HINT] = icons.diagnostic.Hint,
-				[vim.diagnostic.severity.INFO] = icons.diagnostic.Info,
-				[vim.diagnostic.severity.WARN] = icons.diagnostic.Warn,
-				[vim.diagnostic.severity.ERROR] = icons.diagnostic.Error,
-			}
-			local d_hl = {
-				[vim.diagnostic.severity.HINT] = "DiagnosticHint",
-				[vim.diagnostic.severity.INFO] = "DiagnosticInfo",
-				[vim.diagnostic.severity.WARN] = "DiagnosticWarn",
-				[vim.diagnostic.severity.ERROR] = "DiagnosticError",
-			}
-			return d_icon[d.severity] .. " ", d_hl[d.severity]
-		end,
-		focusable = false,
-	},
+  underline = true,
+  signs = true,
+  severity_sort = true,
+  float = {
+    border = "rounded",
+    source = "if_many",
+    header = "",
+    prefix = function(d)
+      local d_icon = {
+        [vim.diagnostic.severity.HINT] = icons.diagnostic.Hint,
+        [vim.diagnostic.severity.INFO] = icons.diagnostic.Info,
+        [vim.diagnostic.severity.WARN] = icons.diagnostic.Warn,
+        [vim.diagnostic.severity.ERROR] = icons.diagnostic.Error,
+      }
+      local d_hl = {
+        [vim.diagnostic.severity.HINT] = "DiagnosticHint",
+        [vim.diagnostic.severity.INFO] = "DiagnosticInfo",
+        [vim.diagnostic.severity.WARN] = "DiagnosticWarn",
+        [vim.diagnostic.severity.ERROR] = "DiagnosticError",
+      }
+      return d_icon[d.severity] .. " ", d_hl[d.severity]
+    end,
+    focusable = false,
+  },
 })
 
 for _, type in ipairs({ "Error", "Warn", "Hint", "Info" }) do
