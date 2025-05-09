@@ -1,8 +1,9 @@
-plugins=(git ag zsh-autosuggestions zsh-syntax-highlighting zsh-vi-mode)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-vi-mode)
 
 export ZSHRC=$HOME/.zshrc
 export ZSH=$HOME/.oh-my-zsh
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#bbbbbb,bg=bold"
+export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/highlighters
 export ZSH_THEME="agnoster"
 
 source $ZSH/oh-my-zsh.sh
@@ -31,4 +32,4 @@ export PATH=$PATH:/usr/local/share/npm/bin:/usr/local/bin:/usr/local/sbin
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
 [ -s "/Users/brandon/.bun/_bun" ] && source "/Users/brandon/.bun/_bun"
 
-clear
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
