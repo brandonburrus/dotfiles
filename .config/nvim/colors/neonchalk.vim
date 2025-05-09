@@ -5,9 +5,9 @@ endif
 set background=dark
 hi clear
 
-hi Debug      guifg=#ff0000     guibg=#ff0000
-hi Normal     guifg=#e8e8e8     guibg=#201d26
-hi Menu       guifg=#555555     guibg=#201d26
+hi Debug      guifg=#ff0000  guibg=#ff0000
+hi Normal     guifg=#e8e8e8 guibg=#201d26
+hi Menu       guifg=#555555 guibg=#201d26
 hi White      guifg=#e8e8e8
 hi Red        guifg=#e8212f
 hi ErrorRed   guifg=#ff5050
@@ -131,3 +131,8 @@ hi! link FloatBorder Menu
 hi! link TelescopeNormal Normal
 hi! link TelescopeTitle Normal
 hi! link TelescopeBorder Menu
+
+hi! link LazyH1 White
+hi! link LazyButton White
+hi! link LazyH2 White
+hi! link LazySpecial Magenta

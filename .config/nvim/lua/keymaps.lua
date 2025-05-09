@@ -43,3 +43,8 @@ vim.keymap.set('n', '<leader>a', '<cmd>lua vim.lsp.buf.code_action()<cr>', { sil
 
 vim.keymap.set('n', '<Up>', '<cmd>resize +2<cr>', { silent = true, remap = false })
 vim.keymap.set('n', '<Down>', '<cmd>resize -2<cr>', { silent = true, remap = false })
+vim.keymap.set('n', '<Left>', '<cmd>vertical resize +2<cr>', { silent = true, remap = false })
+vim.keymap.set('n', '<Right>', '<cmd>vertical resize -2<cr>', { silent = true, remap = false })
+
+vim.keymap.set('n', '[g', vim.diagnostic.goto_prev)
+vim.keymap.set('n', ']g', vim.diagnostic.goto_next)

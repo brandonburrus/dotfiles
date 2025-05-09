@@ -69,7 +69,7 @@ vim.g.loaded_netrwPlugin = 1
 local icons = require 'icons'
 
 vim.diagnostic.config({
-	virtual_text = true,
+	virtual_text = false,
   update_in_insert = true,
 	underline = true,
 	signs = true,
