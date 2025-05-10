@@ -5,7 +5,7 @@ endif
 set background=dark
 hi clear
 
-hi Debug      guifg=#ff0000  guibg=#ff0000
+hi Debug      guifg=#ff0000 guibg=#ff0000
 hi Normal     guifg=#e8e8e8 guibg=#201d26
 hi Menu       guifg=#555555 guibg=#201d26
 hi White      guifg=#e8e8e8
@@ -70,7 +70,7 @@ hi! link PreProc Grey
 hi! link Special Cyan
 hi! link Struct Cyan
 hi! link Class Cyan
-hi! link Directory Cyan
+hi! link Directory Blue
 
 hi! link @variable Variable
 hi! link @string.typescript String
