@@ -41,6 +41,7 @@ return {
         'java',
         'markdown',
         'scss',
+        'bash',
       },
     }
   end

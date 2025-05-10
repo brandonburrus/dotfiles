@@ -8,7 +8,7 @@ export ZSH_THEME="agnoster"
 
 source $ZSH/oh-my-zsh.sh
 
-export ALIASES=$HOME/.aliases
+export ALIASES=$HOME/aliases.sh
 export BUN_INSTALL="$HOME/.bun"
 export EDITOR="nvim"
 export GOPATH=$HOME/go
@@ -23,7 +23,7 @@ export PATH=$PATH:$BUN_INSTALL/bin
 export PATH=$PATH:$HOME/.scripts
 export PATH=$PATH:/usr/local/share/npm/bin:/usr/local/bin:/usr/local/sbin
 
-[ -f ~/.aliases ] && source ~/.aliases;
+[ -f ~/aliases.sh ] && source ~/aliases.sh
 [ -f ~/.bash_profile ] && source ~/.bash_profile;
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local;
 
