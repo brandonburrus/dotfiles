@@ -63,6 +63,8 @@ hi! link ErrorMsg ErrorRed
 hi! link Visual SelectBlue
 hi! link VisualNC SelectBlue
 hi! link Search SelectBlue
+hi! link Sneak SelectBlue
+hi! link SneakCurrent SelectBlue
 hi! link IncSearch SelectBlue
 hi! link CurSearch SelectBlue
 hi! link Todo Orange

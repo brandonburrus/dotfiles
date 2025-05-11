@@ -1,12 +1,8 @@
 -- More motions to make file navigation faster and easier
 return {
-  'kylechui/nvim-surround', -- Text objects for "surrounding" like {}, [], "" etc
-  {
-    'ggandor/leap.nvim', -- Remap s to a better movement motion
-    config = function()
-      require 'leap'.set_default_mappings()
-    end,
-  },
+  'tpope/vim-surround', -- Text objects for "surrounding" like {}, [], "" etc
+  'easymotion/vim-easymotion', -- global jump to anywhere
+  'justinmk/vim-sneak', -- remap s to be a more powerful f/t
   'matze/vim-move', -- Move lines up and down
   'tpope/vim-repeat', -- Make more things repeatable with .
   'lukelbd/vim-toggle', -- Toggle "boolean"-like words

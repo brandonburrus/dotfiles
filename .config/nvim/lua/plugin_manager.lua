@@ -9,5 +9,15 @@ require 'lazy'.setup {
     { import = 'plugins' },
   },
   install = { colorscheme = { 'neonchalk' } },
-  checker = { enabled = true },
+  checker = {
+    enabled = true,
+    notify = false,
+  },
+  change_detection = {
+    notify = false,
+  },
+  ui = {
+    border = 'rounded',
+    backdrop = 100,
+  },
 }

@@ -48,3 +48,11 @@ vim.keymap.set('n', '<Right>', '<cmd>vertical resize -2<cr>', { silent = true, r
 
 vim.keymap.set('n', '[g', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']g', vim.diagnostic.goto_next)
+
+vim.keymap.set('n', 's', '<Plug>Sneak_s', { noremap = true, silent = true })
+vim.keymap.set('n', 'S', '<Plug>Sneak_S', { noremap = true, silent = true })
+vim.keymap.set('n', 'f', '<Plug>Sneak_f', { noremap = true, silent = true })
+vim.keymap.set('n', 'F', '<Plug>Sneak_F', { noremap = true, silent = true })
+vim.keymap.set('n', 't', '<Plug>Sneak_t', { noremap = true, silent = true })
+vim.keymap.set('n', 'T', '<Plug>Sneak_T', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader><leader>', '<Plug>(easymotion-prefix)', { noremap = true, silent = true })
