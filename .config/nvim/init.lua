@@ -41,7 +41,7 @@ vim.opt.foldlevelstart = 99
 vim.opt.foldmethod = 'indent'
 
 vim.opt.cmdheight = 1
-vim.opt.shell = '/bash/zsh'
+vim.opt.shell = '/bin/zsh'
 vim.opt.shortmess = 'a'
 vim.opt.showcmd = true
 vim.opt.exrc = true

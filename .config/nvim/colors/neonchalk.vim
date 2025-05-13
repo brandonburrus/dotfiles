@@ -73,6 +73,7 @@ hi! link Special Cyan
 hi! link Struct Cyan
 hi! link Class Cyan
 hi! link Directory Blue
+hi! link Folded Menu
 
 hi! link @variable Variable
 hi! link @string.typescript String
@@ -87,6 +88,8 @@ hi! link @variable.builtin.typescript Keyword
 hi! link @lsp.typemod.property.declaration.typescript Purple
 hi! link @character.special.typescript Keyword
 hi! link @boolean.typescript Keyword
+hi! link @lsp.mod.annotation.dart Grey
+hi! link @keyword.conditional.ternary.dart Operator
 
 hi! link DiagnosticError ErrorRed
 hi! link DiagnosticWarn Orange
@@ -126,8 +129,8 @@ hi! link CmpItemKindProperty Green
 hi! link CmpItemKindUnit Cyan
 hi! link CmpItemMenu Debug
 
-hi! link Float Menu
-hi! link NormalFloat Menu
+hi! link Float Normal
+hi! link NormalFloat Normal
 hi! link FloatBorder Menu
 
 hi! link TelescopeNormal Normal
@@ -138,3 +141,6 @@ hi! link LazyH1 White
 hi! link LazyButton White
 hi! link LazyH2 White
 hi! link LazySpecial Magenta
+
+hi! link FlutterToolsOutlineIndentGuides DarkGrey
+hi! link FlutterWidgetGuides DarkGrey

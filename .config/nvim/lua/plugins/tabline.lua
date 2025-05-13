@@ -99,10 +99,23 @@ return {
       options = {
         buffer_close_icon = '',
         close_icon = '',
-        diagnostics = 'coc',
+        diagnostics = 'nvim_lsp',
         show_buffer_close_icons = false,
         show_close_icon = false,
         show_tab_indicators = false,
+        custom_filter = function(buf_number)
+          local filetype = vim.api.nvim_buf_get_option(buf_number, 'filetype')
+          local filename = vim.api.nvim_buf_get_name(buf_number)
+          local excluded_filetypes = {'help', 'quickfix', 'terminal'}
+          local excluded_filenames = {'dashboard', 'NvimTree_1', '__FLUTTER_DEV_LOG__'}
+          if vim.tbl_contains(excluded_filetypes, filetype) then
+            return false
+          end
+          if vim.tbl_contains(excluded_filenames, filename) then
+            return false
+          end
+          return true
+        end,
       }
     })
   end

@@ -11,6 +11,7 @@ alias dcu='docker-compose up'
 alias dcd='docker-compose down'
 alias dcr='docker-compose run'
 alias c=clear
+alias fl=flutter
 alias g=git
 alias ga='git add'
 alias gc='git commit'

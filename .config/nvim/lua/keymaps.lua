@@ -56,3 +56,6 @@ vim.keymap.set('n', 'F', '<Plug>Sneak_F', { noremap = true, silent = true })
 vim.keymap.set('n', 't', '<Plug>Sneak_t', { noremap = true, silent = true })
 vim.keymap.set('n', 'T', '<Plug>Sneak_T', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader><leader>', '<Plug>(easymotion-prefix)', { noremap = true, silent = true })
+
+vim.api.nvim_create_user_command('DartFmt', '!dart format %', {})
+
