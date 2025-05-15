@@ -14,10 +14,12 @@ return {
       dependencies = {
         'kkharji/sqlite.lua',
       },
-    }
+    },
+    'nvim-telescope/telescope-dap.nvim'
   },
   config = function()
-    require 'telescope'.setup {
+    local telescope = require 'telescope'
+    telescope.setup {
       extensions = {
         fzf = {
           fuzzy = true,
@@ -30,8 +32,9 @@ return {
         },
       }
     }
-    require 'telescope'.load_extension('fzf')
-    require 'telescope'.load_extension('smart_open')
-    require 'telescope'.load_extension('flutter')
+    telescope.load_extension('fzf')
+    telescope.load_extension('smart_open')
+    telescope.load_extension('flutter')
+    telescope.load_extension('dap')
   end
 }

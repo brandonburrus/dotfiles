@@ -144,3 +144,5 @@ hi! link LazySpecial Magenta
 
 hi! link FlutterToolsOutlineIndentGuides DarkGrey
 hi! link FlutterWidgetGuides DarkGrey
+
+hi! link GitBlame Grey
