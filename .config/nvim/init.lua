@@ -108,5 +108,7 @@ vim.cmd.colorscheme 'neonchalk'
 
 require 'keymaps'
 require 'plugin_manager'
+require 'cmds'
+require 'auto_cmds'
 
 vim.deprecate = function() end 
