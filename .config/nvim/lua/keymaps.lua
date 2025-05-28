@@ -31,6 +31,16 @@ local leader_cmd_maps = {
   ['gh'] = 'GBrowse',
   ['gf'] = 'NvimTreeFindFile',
   ['u'] = 'UndotreeToggle',
+  ['hu'] = 'Gitsigns reset_hunk',
+  ['ha'] = 'Gitsigns stage_hunk',
+  ['hr'] = 'Gitsigns undo_stage_hunk',
+  ['hp'] = 'Gitsigns preview_hunk',
+  ['hR'] = 'Gitsigns reset_buffer',
+  ['hS'] = 'Gitsigns stage_buffer',
+  ['hU'] = 'Gitsigns undo_stage_buffer',
+  ['hP'] = 'Gitsigns preview_buffer',
+  ['hd'] = 'Gitsigns diffthis',
+  ['hb'] = 'GitBlameToggle',
 }
 
 for key, mapping in pairs(leader_cmd_maps) do
@@ -53,6 +63,10 @@ vim.keymap.set('n', '<Right>', '<cmd>vertical resize -2<cr>', { silent = true, r
 -- Diagnostic jumping
 vim.keymap.set('n', '[g', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']g', vim.diagnostic.goto_next)
+
+-- Hunk jumping
+vim.keymap.set('n', '[h', '<cmd>Gitsigns prev_hunk<cr>', { silent = true })
+vim.keymap.set('n', ']h', '<cmd>Gitsigns next_hunk<cr>', { silent = true })
 
 -- Sneak
 vim.keymap.set('n', 's', '<Plug>Sneak_s', { noremap = true, silent = true })
