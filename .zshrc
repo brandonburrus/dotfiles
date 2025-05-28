@@ -24,6 +24,7 @@ export PATH=$PATH:$BUN_INSTALL/bin
 export PATH=$PATH:$HOME/.scripts
 export PATH=$PATH:/usr/local/share/npm/bin:/usr/local/bin:/usr/local/sbin
 export PATH=$PATH:$DVM_DIR/bin
+export PATH=$PATH:$HOME/.pub-cache/bin
 
 [ -f ~/aliases.sh ] && source ~/aliases.sh
 [ -f ~/.bash_profile ] && source ~/.bash_profile;

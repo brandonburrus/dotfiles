@@ -3,7 +3,8 @@ return {
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
   dependencies = {
-    'nvim-treesitter/nvim-treesitter-textobjects'
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    'folke/todo-comments.nvim',
   },
   config = function () 
     require 'nvim-treesitter.configs'.setup {

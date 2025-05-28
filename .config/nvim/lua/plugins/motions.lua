@@ -21,14 +21,14 @@ return {
     end
   },
   {
-    'jinh0/eyeliner.nvim', -- Show quick indicators when using f/t
+    'Wansmer/treesj', -- Split/join treesitter nodes
     config = function()
-      require 'eyeliner'.setup {
-        highlight_on_key = true,
-        dim = false,             
-        max_length = 999,
-        default_keymaps = true,
-      }
+      require('treesj').setup({
+        use_default_keymaps = false,
+        max_join_length = 120, -- Maximum length of a line to join
+        cursor_behavior = 'start', -- Where to place the cursor after split/join
+      })
+      vim.keymap.set('n', '<leader>j', '<cmd>TSJToggle<cr>', { desc = 'Split/Join' })
     end
-  },
+  }
 }
