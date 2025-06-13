@@ -90,6 +90,23 @@ hi! link @character.special.typescript Keyword
 hi! link @boolean.typescript Keyword
 hi! link @lsp.mod.annotation.dart Grey
 hi! link @keyword.conditional.ternary.dart Operator
+hi! link @tag.delimiter.svelte Normal
+hi! link @tag.delimiter.tsx Normal
+hi! link @tag.attribute.svelte Green
+hi! link @tag.svelte Blue
+hi! link @tag Blue
+hi! link @tag.tsx Blue
+hi! link @tag.builtin.tsx Blue
+hi! link @string.special.url.svelte @none
+hi! link @markup.link.label.svelte @none
+hi! link @markup.heading.1 @none
+hi! link @markup.heading.2 @none
+hi! link @markup.heading.3 @none
+hi! link @markup.heading.4 @none
+hi! link @markup.heading.5 @none
+hi! link @markup.heading.6 @none
+hi! link @tag.attribute.tsx Green
+hi! link @punctuation.special.tsx Regex
 
 hi! link DiagnosticError ErrorRed
 hi! link DiagnosticWarn Orange
