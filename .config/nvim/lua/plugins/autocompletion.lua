@@ -2,9 +2,14 @@
 return {
   'hrsh7th/nvim-cmp',
   dependencies = {
-    'neovim/nvim-lspconfig',
-    'mason-org/mason.nvim',
-    'mason-org/mason-lspconfig.nvim',
+    {
+      "mason-org/mason-lspconfig.nvim",
+      opts = {},
+      dependencies = {
+        { "mason-org/mason.nvim", opts = {} },
+        "neovim/nvim-lspconfig",
+      },
+    },
     'hrsh7th/cmp-nvim-lsp',
     {
       'windwp/nvim-autopairs',
@@ -16,7 +21,7 @@ return {
       'L3MON4D3/LuaSnip',
       lazy = false,
       dependencies = {
-        'honza/vim-snippets',
+        --'honza/vim-snippets',
         'saadparwaiz1/cmp_luasnip',
       }
     },
@@ -24,12 +29,27 @@ return {
   config = function()
     local lsp_servers = {
       "ts_ls",
-      "pyright",
-      "rust_analyzer",
+      -- "pyright",
+      -- "rust_analyzer",
+      -- "gopls",
+      "jsonls",
+      -- "vimls",
+      -- "lua_ls",
+      --"html",
+      --"cssls",
+      -- "bashls",
+      -- "tailwindcss",
+      -- "dockerls",
+      -- "yamlls",
+      --"biome",
+      -- "sqls",
+      -- "marksman",
+      --"svelte",
+      --"eslint",
     }
 
     require 'mason'.setup()
-    require 'mason-lspconfig'.setup{
+    require 'mason-lspconfig'.setup {
       automatic_enable = false,
       ensure_installed = lsp_servers,
     }
@@ -95,7 +115,7 @@ return {
     capabilities = require 'cmp_nvim_lsp'.default_capabilities(capabilities)
 
     local on_attach = function(_, buffer)
-      local attach_opts = { silent = true, buffer = buffer }
+      local attach_opts = { silent = false, buffer = buffer }
       vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, attach_opts)
       vim.keymap.set('n', 'gd', vim.lsp.buf.definition, attach_opts)
       vim.keymap.set('n', 'K', vim.lsp.buf.hover, attach_opts)
@@ -113,10 +133,9 @@ return {
     end
 
     luasnip.config.setup {}
-    require("luasnip.loaders.from_snipmate").lazy_load()
+    --require("luasnip.loaders.from_snipmate").lazy_load()
     require 'luasnip.loaders.from_snipmate'.lazy_load({
-      paths = {"~/.config/nvim/snippets"}
+      paths = { "~/.config/nvim/snippets" }
     })
-
   end
 }

@@ -19,7 +19,6 @@ local leader_cmd_maps = {
   ['o'] = 'Telescope smart_open',
   ['ff'] = 'Telescope find_files',
   ['fg'] = 'Telescope live_grep',
-  ['fr'] = 'Telescope registers',
   ['fm'] = 'Telescope marks',
   ['fk'] = 'Telescope keymaps',
   ['fb'] = 'Telescope buffers',
@@ -44,7 +43,7 @@ local leader_cmd_maps = {
 }
 
 for key, mapping in pairs(leader_cmd_maps) do
-  vim.keymap.set('n', '<leader>'..key, '<cmd>'..mapping..'<cr>', {
+  vim.keymap.set('n', '<leader>' .. key, '<cmd>' .. mapping .. '<cr>', {
     silent = true,
     noremap = true,
   })
@@ -76,4 +75,3 @@ vim.keymap.set('n', 'F', '<Plug>Sneak_F', { noremap = true, silent = true })
 vim.keymap.set('n', 't', '<Plug>Sneak_t', { noremap = true, silent = true })
 vim.keymap.set('n', 'T', '<Plug>Sneak_T', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader><leader>', '<Plug>(easymotion-prefix)', { noremap = true, silent = true })
-
