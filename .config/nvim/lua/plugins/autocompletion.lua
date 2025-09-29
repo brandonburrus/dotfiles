@@ -28,11 +28,11 @@ return {
   },
   config = function()
     local lsp_servers = {
-      "ts_ls",
+      -- "ts_ls",
       -- "pyright",
       -- "rust_analyzer",
       -- "gopls",
-      "jsonls",
+      -- "jsonls",
       -- "vimls",
       -- "lua_ls",
       --"html",

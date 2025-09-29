@@ -28,8 +28,18 @@ return {
           italic = false
         },
         tab = defaultObj,
-        numbers = defaultObj,
-        numbers_selected = defaultObj,
+        numbers = {
+          fg = '#424457',
+          bg = bg
+        },
+        numbers_visible = {
+          fg = '#424457',
+          bg = bg
+        },
+        numbers_selected = {
+          fg = '#424457',
+          bg = bg
+        },
         diagnostic = defaultObj,
         diagnostic_visible = defaultObj,
         diagnostic_selected = defaultObj,
@@ -79,6 +89,10 @@ return {
           fg = '#02a7ff',
           bg = bg
         },
+        indicator_visible = {
+          fg = bg,
+          bg = bg
+        },
         pick_selected = {
           fg = bg,
           bg = bg,
@@ -99,10 +113,14 @@ return {
       options = {
         buffer_close_icon = '',
         close_icon = '',
+        diagnostics = "nvim_lsp",
         diagnostics = 'nvim_lsp',
+        diagnostics_update_on_event = true,
+        numbers = "ordinal",
         show_buffer_close_icons = false,
         show_close_icon = false,
         show_tab_indicators = false,
+        sort_by = 'insert_at_end',
         custom_filter = function(buf_number)
           local filetype = vim.api.nvim_buf_get_option(buf_number, 'filetype')
           local filename = vim.api.nvim_buf_get_name(buf_number)
