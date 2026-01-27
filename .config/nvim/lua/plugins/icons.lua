@@ -114,6 +114,11 @@ return {
             icon = "",
             color = "#2496ed"
           },
+          ["astro"] = {
+            name = "Astro",
+            icon = "",
+            color = "#ff5d01"
+          },
         },
         override_by_filename = {
           ["Cargo.toml"] = {
@@ -165,6 +170,16 @@ return {
             name = "DevIconVitestTSConfig",
             icon = "",
             color = "#358ef1",
+          },
+          ["drizzle.config.ts"] = {
+            name = "DevIconDrizzleTSConfig",
+            icon = "",
+            color = "#C5F74F",
+          },
+          ["postcss.config.ts"] = {
+            name = "DevIconPostcssTSConfig",
+            icon = "",
+            color = "#be0027",
           },
           ["cypress.config.ts"] = {
             name = "DevIconCypressTSConfig",

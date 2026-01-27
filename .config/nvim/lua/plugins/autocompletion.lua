@@ -28,9 +28,9 @@ return {
   },
   config = function()
     local lsp_servers = {
-      -- "ts_ls",
+      "ts_ls",
       -- "pyright",
-      -- "rust_analyzer",
+      "rust_analyzer",
       -- "gopls",
       -- "jsonls",
       -- "vimls",
@@ -54,7 +54,7 @@ return {
       ensure_installed = lsp_servers,
     }
 
-    local lspconfig = require 'lspconfig'
+    -- local lspconfig = require 'lspconfig'
     local cmp = require 'cmp'
     local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
     local lspkind = require 'lspkind'
@@ -125,12 +125,12 @@ return {
       vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, attach_opts)
       vim.keymap.set('n', 'so', require('telescope.builtin').lsp_references, attach_opts)
     end
-    for _, lsp in pairs(lsp_servers) do
-      lspconfig[lsp].setup {
-        on_attach = on_attach,
-        capabilities = capabilities,
-      }
-    end
+    -- for _, lsp in pairs(lsp_servers) do
+    --   lspconfig[lsp].setup {
+    --     on_attach = on_attach,
+    --     capabilities = capabilities,
+    --   }
+    -- end
 
     luasnip.config.setup {}
     --require("luasnip.loaders.from_snipmate").lazy_load()

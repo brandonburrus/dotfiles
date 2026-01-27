@@ -4,42 +4,48 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 local leader_cmd_maps = {
   ['e'] = 'NvimTreeToggle',
-  ['t'] = 'Toggle',
+  ['c'] = 'CodeCompanionChat',
+
+  -- Buffers
   ['w'] = 'BD',
   [','] = 'bp',
   ['.'] = 'bn',
-  ['p'] = 'BufferPick',
+
+  -- Misc
   ['no'] = 'nohls',
   ['l'] = 'Lazy',
-  ['3'] = 'set relativenumber!',
-  ['co'] = 'Copilot panel',
-  ['cs'] = 'Copilot status',
-  ['ce'] = 'Copilot enable',
-  ['cd'] = 'Copilot disable',
+  ['0'] = 'set relativenumber!',
+  ['rr'] = 'source $HOME/.config/nvim/init.lua',
+
+  -- Telescope
   ['o'] = 'Telescope smart_open',
+  ['fb'] = 'Telescope buffers',
+  ['fd'] = 'Telescope lsp_definitions',
   ['ff'] = 'Telescope find_files',
   ['fg'] = 'Telescope live_grep',
-  ['fm'] = 'Telescope marks',
+  ['fi'] = 'Telescope lsp_implementation',
   ['fk'] = 'Telescope keymaps',
-  ['fb'] = 'Telescope buffers',
+  ['fm'] = 'Telescope marks',
   ['fr'] = 'Telescope lsp_references',
   ['fs'] = 'Telescope lsp_document_symbols',
-  ['fd'] = 'Telescope lsp_definitions',
-  ['fi'] = 'Telescope lsp_implementation',
   ['fw'] = 'Telescope lsp_workspace_symbols',
-  ['gh'] = 'GBrowse',
+
+  -- Git
   ['gf'] = 'NvimTreeFindFile',
-  ['u'] = 'UndotreeToggle',
-  ['hu'] = 'Gitsigns reset_hunk',
-  ['ha'] = 'Gitsigns stage_hunk',
-  ['hr'] = 'Gitsigns undo_stage_hunk',
-  ['hp'] = 'Gitsigns preview_hunk',
+  ['gh'] = 'GBrowse',
+  ['hP'] = 'Gitsigns preview_buffer',
   ['hR'] = 'Gitsigns reset_buffer',
   ['hS'] = 'Gitsigns stage_buffer',
   ['hU'] = 'Gitsigns undo_stage_buffer',
-  ['hP'] = 'Gitsigns preview_buffer',
-  ['hd'] = 'Gitsigns diffthis',
+  ['ha'] = 'Gitsigns stage_hunk',
   ['hb'] = 'GitBlameToggle',
+  ['hd'] = 'Gitsigns diffthis',
+  ['hp'] = 'Gitsigns preview_hunk',
+  ['hr'] = 'Gitsigns undo_stage_hunk',
+  ['hu'] = 'Gitsigns reset_hunk',
+ 
+  -- Undotree
+  ['u'] = 'UndotreeToggle',
 }
 
 for key, mapping in pairs(leader_cmd_maps) do

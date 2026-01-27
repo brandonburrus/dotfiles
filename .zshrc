@@ -1,3 +1,7 @@
+
+
+
+
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-vi-mode)
 
 export ZSHRC=$HOME/.zshrc
@@ -25,6 +29,7 @@ export PATH=$PATH:$HOME/.scripts
 export PATH=$PATH:/usr/local/share/npm/bin:/usr/local/bin:/usr/local/sbin
 export PATH=$PATH:$DVM_DIR/bin
 export PATH=$PATH:$HOME/.pub-cache/bin
+export PATH=$PATH:$HOME/.local/bin
 
 [ -f ~/aliases.sh ] && source ~/aliases.sh
 [ -f ~/.bash_profile ] && source ~/.bash_profile;
@@ -36,3 +41,5 @@ export PATH=$PATH:$HOME/.pub-cache/bin
 
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+
+alias claude="/Users/brandon/.claude/local/claude"
