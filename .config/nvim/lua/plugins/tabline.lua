@@ -108,7 +108,11 @@ return {
           bg = bg,
           italic = false
         },
-        offset_separator = defaultObj
+        offset_separator = defaultObj,
+        trunc_marker = {
+          fg = '#424457',
+          bg = bg
+        }
       },
       options = {
         buffer_close_icon = '',
