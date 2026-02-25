@@ -175,7 +175,7 @@ hi! link CmpItemKindMethod Blue
 hi! link CmpItemKindKeyword Magenta
 hi! link CmpItemKindProperty Green
 hi! link CmpItemKindUnit Cyan
-hi! link CmpItemMenu Text
+hi! link CmpItemMenu Normal
 
 hi! link Float Normal
 hi! link NormalFloat Normal
