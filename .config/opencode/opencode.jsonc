@@ -1,25 +1,14 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "keybinds": {
+    "messages_half_page_down": "<leader>j",
+    "messages_half_page_up": "<leader>k"
+  },
   "permission": {
     "read": "allow",
-    "bash": {
-      "*": "ask",
-      "ls": "allow",
-      "cat": "allow",
-      "pwd": "allow",
-      "cd": "allow",
-      "echo": "allow",
-      "head": "allow",
-      "tail": "allow",
-      "tree": "allow",
-      "find": "allow",
-      "grep": "allow",
-      "wc": "allow",
-      "stat": "allow",
-      "file": "allow"
-    },
-    "edit": "ask",
-    "write": "ask"
+    "bash": "allow",
+    "edit": "allow",
+    "write": "allow"
   },
   "theme": "neonchalk"
 }

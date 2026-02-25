@@ -9,4 +9,3 @@ dotfiles config --local status.showUntrackedFiles no
 dotfiles remote add origin git@github.com:BrandonBurrus/dotfiles.git
 dotfiles pull
 ```
-

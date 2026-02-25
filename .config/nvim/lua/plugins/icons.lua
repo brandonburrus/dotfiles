@@ -119,6 +119,36 @@ return {
             icon = "",
             color = "#ff5d01"
           },
+          ["tscn"] = {
+            name = "GodotScene",
+            icon = "",
+            color = "#E0E0E0"
+          },
+          ["gd"] = {
+            name = "GodotScript",
+            icon = "ﮧ",
+            color = "#488CBF"
+          },
+          ["uid"] = {
+            name = "GodotUIDesign",
+            icon = "ﰩ",
+            color = "#488CBF"
+          },
+          ["godot"] = {
+            name = "GodotProject",
+            icon = "ﰩ",
+            color = "#488CBF"
+          },
+          ["rbxlx"] = {
+            name = "RobloxModel",
+            icon = "ﮧ",
+            color = "#fbbd08"
+          },
+          ["rbxm"] = {
+            name = "RobloxModel",
+            icon = "ﮧ",
+            color = "#fbbd08"
+          },
         },
         override_by_filename = {
           ["Cargo.toml"] = {

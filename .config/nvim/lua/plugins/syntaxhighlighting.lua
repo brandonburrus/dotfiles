@@ -43,6 +43,9 @@ return {
         'markdown',
         'scss',
         'bash',
+        'gdscript',
+        'godot_resource',
+        'gdshader',
       },
     }
   end

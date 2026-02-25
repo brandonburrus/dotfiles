@@ -27,10 +27,12 @@ return {
     },
   },
   config = function()
-    local lsp_servers = {
+    -- LSP servers managed by Mason
+    local mason_servers = {
       "ts_ls",
       -- "pyright",
       "rust_analyzer",
+      "luau_lsp",
       -- "gopls",
       -- "jsonls",
       -- "vimls",
@@ -48,13 +50,25 @@ return {
       --"eslint",
     }
 
-    require 'mason'.setup()
-    require 'mason-lspconfig'.setup {
-      automatic_enable = false,
-      ensure_installed = lsp_servers,
+    -- Additional LSP servers (not managed by Mason)
+    local additional_servers = {
+      "gdscript",
     }
 
-    -- local lspconfig = require 'lspconfig'
+    -- Combine all servers for setup
+    local all_servers = {}
+    for _, lsp in pairs(mason_servers) do
+      table.insert(all_servers, lsp)
+    end
+    for _, lsp in pairs(additional_servers) do
+      table.insert(all_servers, lsp)
+    end
+
+    require 'mason'.setup()
+    require 'mason-lspconfig'.setup {
+      ensure_installed = mason_servers,
+    }
+
     local cmp = require 'cmp'
     local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
     local lspkind = require 'lspkind'
@@ -114,7 +128,7 @@ return {
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = require 'cmp_nvim_lsp'.default_capabilities(capabilities)
 
-    local on_attach = function(_, buffer)
+    local on_attach = function(client, buffer)
       local attach_opts = { silent = false, buffer = buffer }
       vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, attach_opts)
       vim.keymap.set('n', 'gd', vim.lsp.buf.definition, attach_opts)
@@ -125,12 +139,54 @@ return {
       vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, attach_opts)
       vim.keymap.set('n', 'so', require('telescope.builtin').lsp_references, attach_opts)
     end
-    -- for _, lsp in pairs(lsp_servers) do
-    --   lspconfig[lsp].setup {
-    --     on_attach = on_attach,
-    --     capabilities = capabilities,
-    --   }
-    -- end
+
+    -- Custom configuration for luau_lsp (Roblox)
+    vim.lsp.config('luau_lsp', {
+      capabilities = capabilities,
+      cmd = { 'luau-lsp', 'lsp', '--definitions=~/.local/share/nvim/luau-lsp/globalTypes.d.luau', '--docs=~/.local/share/nvim/luau-lsp/api-docs.json' },
+      settings = {
+        ['luau-lsp'] = {
+          platform = {
+            type = 'roblox',
+          },
+          completion = {
+            imports = {
+              enabled = true,
+            },
+          },
+        },
+      },
+    })
+    vim.api.nvim_create_autocmd('LspAttach', {
+      callback = function(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if client and client.name == 'luau_lsp' then
+          on_attach(client, args.buf)
+        end
+      end,
+    })
+
+    -- Setup LSP servers using the new vim.lsp.config API
+    for _, lsp in pairs(all_servers) do
+      if lsp ~= 'luau_lsp' then -- Skip luau_lsp, configured above
+        vim.lsp.config(lsp, {
+          capabilities = capabilities,
+        })
+        vim.api.nvim_create_autocmd('LspAttach', {
+          callback = function(args)
+            local client = vim.lsp.get_client_by_id(args.data.client_id)
+            if client and client.name == lsp then
+              on_attach(client, args.buf)
+            end
+          end,
+        })
+      end
+    end
+
+    -- Enable LSP servers
+    for _, lsp in pairs(all_servers) do
+      vim.lsp.enable(lsp)
+    end
 
     luasnip.config.setup {}
     --require("luasnip.loaders.from_snipmate").lazy_load()

@@ -7,7 +7,7 @@ hi clear
 
 hi Debug      guifg=#ff0000 guibg=#ff0000
 hi Normal     guifg=#e8e8e8 guibg=#201d26
-hi Menu       guifg=#555555 guibg=#201d26
+hi Menu       guifg=#555555 guibg=#221f28
 hi White      guifg=#e8e8e8
 hi Red        guifg=#e8212f
 hi ErrorRed   guifg=#ff5050
@@ -108,6 +108,37 @@ hi! link @markup.heading.6 @none
 hi! link @tag.attribute.tsx Green
 hi! link @punctuation.special.tsx Regex
 
+" GDScript syntax highlighting
+hi! link @keyword.gdscript Keyword
+hi! link @keyword.function.gdscript Keyword
+hi! link @keyword.operator.gdscript Keyword
+hi! link @keyword.return.gdscript Keyword
+hi! link @keyword.conditional.gdscript Keyword
+hi! link @keyword.repeat.gdscript Keyword
+hi! link @string.gdscript String
+hi! link @string.documentation.gdscript Comment
+hi! link @comment.gdscript Comment
+hi! link @function.gdscript Function
+hi! link @function.builtin.gdscript Blue
+hi! link @function.call.gdscript Function
+hi! link @variable.gdscript Variable
+hi! link @variable.builtin.gdscript Keyword
+hi! link @variable.member.gdscript Green
+hi! link @property.gdscript Green
+hi! link @constant.gdscript Purple
+hi! link @constant.builtin.gdscript Keyword
+hi! link @number.gdscript Number
+hi! link @number.float.gdscript Number
+hi! link @boolean.gdscript Keyword
+hi! link @type.gdscript Type
+hi! link @type.builtin.gdscript Cyan
+hi! link @constructor.gdscript Cyan
+hi! link @operator.gdscript Operator
+hi! link @punctuation.delimiter.gdscript Delimiter
+hi! link @punctuation.bracket.gdscript Delimiter
+hi! link @namespace.gdscript Cyan
+hi! link @annotation.gdscript Grey
+
 hi! link DiagnosticError ErrorRed
 hi! link DiagnosticWarn Orange
 hi! link DiagnosticInfo SearchBlue
@@ -144,7 +175,7 @@ hi! link CmpItemKindMethod Blue
 hi! link CmpItemKindKeyword Magenta
 hi! link CmpItemKindProperty Green
 hi! link CmpItemKindUnit Cyan
-hi! link CmpItemMenu Debug
+hi! link CmpItemMenu Text
 
 hi! link Float Normal
 hi! link NormalFloat Normal
