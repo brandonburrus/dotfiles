@@ -1,7 +1,3 @@
-
-
-
-
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-vi-mode)
 
 export ZSHRC=$HOME/.zshrc
@@ -41,5 +37,3 @@ export PATH=$PATH:$HOME/.local/bin
 
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-
-alias claude="/Users/brandon/.claude/local/claude"
