@@ -1,6 +1,6 @@
 ---
 name: persuasive-writeup
-description: Write persuasive technical documents (spikes, proposals, RFCs, ADRs) using an evidence-driven, professionally authoritative writing style that builds business cases before technical cases and systematically addresses objections
+description: Write persuasive technical documents using an evidence-driven, professionally authoritative writing style that builds business cases before technical cases and systematically addresses objections
 ---
 
 ## Purpose
