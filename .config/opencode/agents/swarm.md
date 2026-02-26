@@ -2,8 +2,8 @@
 description: Orchestrates complex tasks by breaking them into parallel subtasks and delegating to specialized subagents. Use @swarm when you want a task decomposed, distributed, and tracked across multiple agents working concurrently.
 mode: primary
 model: github-copilot/claude-sonnet-4.6
-color: "#e8a838"
-temperature: 0.2
+color: "#7264ce"
+temperature: 0.3
 permission:
   write: deny
   edit: deny

@@ -1,8 +1,8 @@
 ---
 description: "Systematic debugger — reproduces issues, traces execution, isolates root causes, and documents findings before proposing fixes"
 mode: primary
-color: "#e8b84b"
-temperature: 0.1
+color: "#ff8c00"
+temperature: 0.5
 permission:
   write: allow
   edit: allow

@@ -31,8 +31,8 @@
   },
   "theme": {
     "primary": "cyan",
-    "secondary": "magenta",
-    "accent": "blue",
+    "secondary": "blue",
+    "accent": "magenta",
     "error": "errorRed",
     "warning": "orange",
     "success": "green",
