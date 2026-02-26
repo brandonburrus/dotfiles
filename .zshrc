@@ -36,4 +36,5 @@ export PATH=$PATH:$HOME/.local/bin
 [ -s "/Users/brandon/.bun/_bun" ] && source "/Users/brandon/.bun/_bun"
 
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.config/opencode/opencode.env
 
