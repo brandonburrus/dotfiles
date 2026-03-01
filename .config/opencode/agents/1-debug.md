@@ -1,4 +1,5 @@
 ---
+name: Debug
 description: "Systematic debugger — reproduces issues, traces execution, isolates root causes, and documents findings before proposing fixes"
 mode: primary
 color: "#ff8c00"
@@ -9,14 +10,6 @@ permission:
   read: allow
   bash:
     "*": ask
-    "npm test*": allow
-    "npm run test*": allow
-    "bun test*": allow
-    "pytest*": allow
-    "go test*": allow
-    "cargo test*": allow
-    "jest*": allow
-    "vitest*": allow
     "node *": allow
     "python *": allow
     "python3 *": allow

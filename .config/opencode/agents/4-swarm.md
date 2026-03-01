@@ -1,4 +1,5 @@
 ---
+name: Swarm
 description: Orchestrates complex tasks by breaking them into parallel subtasks and delegating to specialized subagents. Use @swarm when you want a task decomposed, distributed, and tracked across multiple agents working concurrently.
 mode: primary
 model: github-copilot/claude-sonnet-4.6

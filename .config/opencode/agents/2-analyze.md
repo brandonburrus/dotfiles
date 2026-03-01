@@ -1,4 +1,5 @@
 ---
+name: Analyze
 description: Analyzes code and provides insights without making any changes. Always asks questions for clarification if needed. Provides detailed explanations and reasoning behind the analysis.
 model: github-copilot/claude-haiku-4.5
 mode: primary
