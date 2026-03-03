@@ -1,10 +1,9 @@
 ---
 name: cog
 type: local
-command: ["bun", "--cwd", "~/cog", "src/mcp.ts"]
-requires_env:
-  - PINECONE_API_KEY
+command: ["cog"]
 optional_env:
+  - PINECONE_API_KEY
   - MEMORY_PATH
   - PINECONE_INDEX_NAME
   - OLLAMA_EMBEDDING_MODEL
@@ -67,19 +66,11 @@ docker run -d \
   pinecone:latest
 ```
 
-### 4. Set the required environment variable
-
-Add to `~/.config/opencode/opencode.env`:
-
-```
-PINECONE_API_KEY=pclocal
-```
-
 ## Environment variables
 
 | Variable | Default | Description |
 |---|---|---|
-| `PINECONE_API_KEY` | *(required)* | Set to `pclocal` for the local emulator |
+| `PINECONE_API_KEY` | `pclocal` | Set to `pclocal` for the local emulator |
 | `MEMORY_PATH` | `~/.config/opencode/memory` | Directory where markdown memory files are stored |
 | `PINECONE_INDEX_NAME` | `cog-memory` | Pinecone index name |
 | `OLLAMA_EMBEDDING_MODEL` | `qwen3-embedding:8b` | Ollama model used to generate embeddings |
@@ -91,6 +82,6 @@ PINECONE_API_KEY=pclocal
 ```jsonc
 "cog": {
   "type": "local",
-  "command": ["bun", "--cwd", "/Users/brandon/cog", "src/mcp.ts"]
+  "command": ["cog"]
 }
 ```

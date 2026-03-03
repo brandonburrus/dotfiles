@@ -3,6 +3,12 @@
   "default_agent": "plan",
   "model": "github-copilot/claude-sonnet-4.6",
   "small_model": "github-copilot/claude-haiku-4.5",
+  "mcp": {
+    "cog": {
+      "type": "local",
+      "command": ["cog"],
+    }
+  },
   "plugin": [
     "@franlol/opencode-md-table-formatter@latest"
   ],
