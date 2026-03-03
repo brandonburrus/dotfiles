@@ -1,0 +1,8 @@
+{
+  "$schema": "https://opencode.ai/tui.json",
+  "theme": "neonchalk",
+  "keybinds": {
+    "messages_half_page_down": "<leader>j",
+    "messages_half_page_up": "<leader>k"
+  }
+}
