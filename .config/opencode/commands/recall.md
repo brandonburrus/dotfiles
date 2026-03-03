@@ -1,6 +1,5 @@
 ---
 description: Search memories and optionally load the full content of any results
-subtask: true
 ---
 
 You are helping the user search and retrieve memories using the memory tools.

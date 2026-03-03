@@ -1,6 +1,5 @@
 ---
 description: Save something to memory — reviews conversation context and asks clarifying questions before saving
-subtask: true
 ---
 
 You are helping the user save a memory using the `cog_create-memory` tool.
