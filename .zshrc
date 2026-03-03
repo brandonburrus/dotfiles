@@ -17,6 +17,7 @@ export NVM_DIR="$HOME/.nvm"
 export DVM_DIR="$HOME/.dvm"
 export VIMRC=$HOME/.config/nvim/init.lua
 export VISUAL="nvim"
+export OPENCODE=$HOME/.config/opencode
 
 export PATH=$PATH:$HOME/.cargo/bin/
 export PATH=$PATH:$GOPATH/bin
@@ -38,3 +39,6 @@ export PATH=$PATH:$HOME/.local/bin
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.config/opencode/opencode.env
 
+
+# opencode
+export PATH=/Users/burrubr/.opencode/bin:$PATH
