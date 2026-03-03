@@ -5,6 +5,7 @@
   "small_model": "github-copilot/claude-haiku-4.5",
   "mcp": {
     "cog": {
+      "enabled": false,
       "type": "local",
       "command": ["cog"],
     }
