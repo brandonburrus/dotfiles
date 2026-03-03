@@ -3,16 +3,6 @@
   "default_agent": "plan",
   "model": "github-copilot/claude-sonnet-4.6",
   "small_model": "github-copilot/claude-haiku-4.5",
-  "mcp": {
-    "context7": {
-      "type": "remote",
-      "url": "https://mcp.context7.com/mcp",
-      "headers": {
-        "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
-      },
-      "enabled": true
-    }
-  },
   "plugin": [
     "@franlol/opencode-md-table-formatter@latest"
   ],
