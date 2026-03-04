@@ -18,24 +18,6 @@ const EMBED_MODEL = "qwen3-embedding:4b"
 const ollama = new Ollama({ host: "http://localhost:11434" })
 const EMBED_DIM = 2560
 
-// Files/dirs to read from the project root for context
-const PROJECT_SIGNALS = [
-  "README.md",
-  "README.mdx",
-  "package.json",
-  "Cargo.toml",
-  "pyproject.toml",
-  "go.mod",
-  "composer.json",
-  "Gemfile",
-  ".sentry",
-  "sentry.properties",
-  ".github",
-]
-
-// Max chars to read from any single project file
-const MAX_FILE_CHARS = 4000
-
 // ---------------------------------------------------------------------------
 // DuckDB helpers (callback API wrapped in promises)
 // ---------------------------------------------------------------------------
@@ -106,7 +88,6 @@ function floatArrayLiteral(vec: number[], dim: number): string {
 }
 
 async function ensureTable(conn: duckdb.Connection): Promise<void> {
-  // Load VSS extension (INSTALL is a no-op if already installed)
   await dbRun(conn, `INSTALL vss`)
   await dbRun(conn, `LOAD vss`)
 
@@ -181,7 +162,6 @@ async function vssSearch(
   queryVec: number[],
   topK: number,
 ): Promise<Array<{ name: string; score: number }>> {
-  // Use an in-memory DB for the HNSW index to avoid touching the persisted file
   const db = await openDb(":memory:")
   const conn = db.connect()
   try {
@@ -205,7 +185,6 @@ async function vssSearch(
       )
     }
 
-    // Build HNSW index in-memory
     await dbRun(
       conn,
       `CREATE INDEX hnsw_idx ON search_vecs USING HNSW (vec)
@@ -277,38 +256,14 @@ async function readCatalog(): Promise<
 }
 
 // ---------------------------------------------------------------------------
-// Project context
+// Result type
 // ---------------------------------------------------------------------------
 
-async function readProjectContext(worktree: string): Promise<string> {
-  const parts: string[] = []
-  for (const signal of PROJECT_SIGNALS) {
-    const fullPath = path.join(worktree, signal)
-    try {
-      const stat = await fs.stat(fullPath)
-      if (stat.isDirectory()) {
-        parts.push(`[directory present: ${signal}]`)
-      } else {
-        const text = await fs.readFile(fullPath, "utf8")
-        parts.push(`[${signal}]\n${text.slice(0, MAX_FILE_CHARS)}`)
-      }
-    } catch {
-      // not present, skip
-    }
-  }
-  return parts.join("\n\n")
-}
-
-async function readInstalledMCPs(worktree: string): Promise<Set<string>> {
-  const configPath = path.join(worktree, ".opencode/opencode.jsonc")
-  try {
-    const text = await fs.readFile(configPath, "utf8")
-    const stripped = text.replace(/\/\/.*$/gm, "").replace(/,\s*([}\]])/g, "$1")
-    const parsed = JSON.parse(stripped)
-    return new Set(Object.keys(parsed?.mcp ?? {}))
-  } catch {
-    return new Set()
-  }
+interface SearchResult {
+  name: string
+  score: number
+  description: string
+  install_command: string
 }
 
 // ---------------------------------------------------------------------------
@@ -317,34 +272,51 @@ async function readInstalledMCPs(worktree: string): Promise<Set<string>> {
 
 export default tool({
   description:
-    "Analyze the current project and recommend MCP servers from the local catalog using semantic similarity. Embeddings are cached in a local DuckDB file (FLOAT[2560]) keyed by catalog content hash. Similarity search uses a DuckDB VSS HNSW index built in-memory on each run. Returns a ranked list of relevant servers with install commands.",
-  args: {},
-  async execute(_args, context) {
-    const worktree = context.worktree ?? context.directory
+    "Search the local MCP catalog using semantic similarity. Provide an array of primary technologies detected in the project (e.g. ['TypeScript', 'GitHub Actions', 'PostgreSQL']). Returns a ranked JSON array of matching MCP servers from the catalog. Catalog embeddings are cached in DuckDB keyed by content hash; the HNSW index is built in-memory on each run.",
+  args: {
+    technologies: {
+      type: "array",
+      items: { type: "string" },
+      description:
+        "List of primary technologies, frameworks, platforms, or services to search against (e.g. ['TypeScript', 'GitHub Actions', 'PostgreSQL', 'Sentry'])",
+    },
+    limit: {
+      type: "number",
+      description: "Maximum number of results to return (default: 5)",
+    },
+  },
+  async execute(args: { technologies: string[]; limit?: number }) {
+    const technologies: string[] = args.technologies ?? []
+    const limit = args.limit ?? 5
+
+    if (technologies.length === 0) {
+      return JSON.stringify({ error: "technologies array must not be empty" })
+    }
 
     // 1. Compute catalog hash
     const hash = await catalogHash()
     if (!hash) {
-      return `No MCP catalog entries found in ${CATALOG_DIR}. Add .md files there to build the catalog.`
+      return JSON.stringify({
+        error: `No MCP catalog entries found in ${CATALOG_DIR}. Add .md files there to build the catalog.`,
+      })
     }
 
-    // 2. Try to load cached embeddings
+    // 2. Try to load cached embeddings; generate and cache on miss
     let cachedEntries = await loadCachedEmbeddings(hash)
-    let cacheUsed = true
 
     if (!cachedEntries) {
-      // Cache miss — embed catalog and store
-      cacheUsed = false
       const catalog = await readCatalog()
       if (catalog.length === 0) {
-        return `No MCP catalog entries found in ${CATALOG_DIR}.`
+        return JSON.stringify({ error: `No MCP catalog entries found in ${CATALOG_DIR}.` })
       }
 
       let catalogEmbeddings: number[][]
       try {
         catalogEmbeddings = await embed(catalog.map((e) => e.whenToUse))
       } catch (err) {
-        return `Failed to connect to Ollama for embeddings. Make sure Ollama is running and "${EMBED_MODEL}" is available.\n\nError: ${err}`
+        return JSON.stringify({
+          error: `Failed to connect to Ollama for embeddings. Make sure Ollama is running and "${EMBED_MODEL}" is available. Details: ${err}`,
+        })
       }
 
       cachedEntries = catalog.map((e, i) => ({
@@ -357,58 +329,42 @@ export default tool({
       await saveCachedEmbeddings(hash, cachedEntries)
     }
 
-    // 3. Read project context and embed it (always fresh — project changes often)
-    const projectContext = await readProjectContext(worktree)
-    if (!projectContext.trim()) {
-      return "Could not read any project signals (no README, package.json, etc. found at project root)."
-    }
-
-    let projectEmbedding: number[]
+    // 3. Batch-embed all technology queries in a single Ollama call
+    let queryEmbeddings: number[][]
     try {
-      ;[projectEmbedding] = await embed([projectContext])
+      queryEmbeddings = await embed(technologies)
     } catch (err) {
-      return `Failed to embed project context via Ollama.\n\nError: ${err}`
+      return JSON.stringify({
+        error: `Failed to embed technologies via Ollama. Details: ${err}`,
+      })
     }
 
-    // 4. Check already-installed MCPs
-    const installed = await readInstalledMCPs(worktree)
-
-    // 5. Score and rank via VSS HNSW in-memory index
-    const allResults = await vssSearch(cachedEntries, projectEmbedding, cachedEntries.length)
-
-    // 6. Format output
-    const threshold = 0.3
-    const recommendations = allResults.filter(
-      (r) => !installed.has(r.name) && r.score >= threshold,
-    )
-    const alreadyInstalledList = allResults.filter((r) => installed.has(r.name))
-
-    const lines: string[] = []
-    const cacheNote = cacheUsed
-      ? "_Catalog embeddings loaded from cache (DuckDB VSS)._"
-      : "_Catalog embeddings generated and cached for next run (DuckDB VSS)._"
-    lines.push(cacheNote, "")
-
-    if (recommendations.length === 0) {
-      lines.push("No additional MCP servers from the catalog seem relevant to this project.")
-    } else {
-      lines.push("### Recommended MCP servers for this project\n")
-      for (const r of recommendations) {
-        const entry = cachedEntries.find((e) => e.name === r.name)!
-        const pct = Math.round(r.score * 100)
-        lines.push(`**\`${r.name}\`** _(${pct}% match)_`)
-        if (entry.description) lines.push(`> ${entry.description}`)
-        lines.push(`> Install: \`/install-mcp ${r.name}\``)
-        lines.push("")
+    // 4. Run VSS search for each technology, merge by keeping max score per server
+    const scoreMap = new Map<string, number>()
+    for (const queryVec of queryEmbeddings) {
+      const results = await vssSearch(cachedEntries, queryVec, cachedEntries.length)
+      for (const r of results) {
+        const prev = scoreMap.get(r.name) ?? 0
+        if (r.score > prev) scoreMap.set(r.name, r.score)
       }
     }
 
-    if (alreadyInstalledList.length > 0) {
-      lines.push(
-        `_Already installed: ${alreadyInstalledList.map((r) => `\`${r.name}\``).join(", ")}_`,
-      )
-    }
+    // 5. Filter by threshold, sort, apply limit
+    const THRESHOLD = 0.3
+    const results: SearchResult[] = Array.from(scoreMap.entries())
+      .filter(([, score]) => score >= THRESHOLD)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, limit)
+      .map(([name, score]) => {
+        const entry = cachedEntries!.find((e) => e.name === name)!
+        return {
+          name,
+          score: Math.round(score * 100) / 100,
+          description: entry.description,
+          install_command: `/install-mcp ${name}`,
+        }
+      })
 
-    return lines.join("\n")
+    return JSON.stringify(results)
   },
 })
