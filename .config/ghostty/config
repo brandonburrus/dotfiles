@@ -1,0 +1,30 @@
+macos-titlebar-style = tabs
+macos-icon = custom
+macos-shortcuts = allow
+
+background = 201d26
+foreground = e8e8e8
+
+font-family = "Dank Mono Nerd Font"
+font-size = 15
+
+cursor-color = eeeeee
+selection-background = 003562
+selection-foreground = e8e8e8
+
+palette = 0=#201d26
+palette = 1=#e8212f
+palette = 2=#82cb4d
+palette = 3=#ff8c00
+palette = 4=#02a7ff
+palette = 5=#da0caa
+palette = 6=#49c0b6
+palette = 7=#e8e8e8
+palette = 8=#3b3b40
+palette = 9=#ff5050
+palette = 10=#41b645
+palette = 11=#ff8c00
+palette = 12=#8fbfdc
+palette = 13=#7264ce
+palette = 14=#49c0b6
+palette = 15=#ffffff
