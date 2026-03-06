@@ -9,6 +9,22 @@
       "enabled": false,
       "type": "local",
       "command": ["cog"],
+    },
+    "github": {
+      "enabled": false,
+      "type": "remote",
+      "url": "https://api.githubcopilot.com/mcp/",
+      "headers": {
+        "Authorization": "Bearer {env:GITHUB_TOKEN}"
+      }
+    },
+    "rsg-rally": {
+      "enabled": false,
+      "type": "local",
+      "command": ["uvx", "--from", "/Users/burrubr/rs/ai/rsg-rally-mcp", "rsg-rally-mcp"],
+      "environment": {
+        "RALLY_API_KEY": "{env:RALLY_API_KEY}"
+      }
     }
   },
   "plugin": [
