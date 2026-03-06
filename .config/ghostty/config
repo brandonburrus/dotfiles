@@ -2,6 +2,9 @@ macos-titlebar-style = tabs
 macos-icon = custom
 macos-shortcuts = allow
 
+title = " "
+maximize = true
+
 background = 201d26
 foreground = e8e8e8
 
