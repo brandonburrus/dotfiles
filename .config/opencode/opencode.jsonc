@@ -3,6 +3,7 @@
   "default_agent": "plan",
   "model": "github-copilot/claude-sonnet-4.6",
   "small_model": "github-copilot/claude-haiku-4.5",
+  "share": "disabled",
   "mcp": {
     "cog": {
       "enabled": false,
