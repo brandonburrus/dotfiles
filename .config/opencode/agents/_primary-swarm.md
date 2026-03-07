@@ -35,18 +35,34 @@ Before decomposing or delegating, ensure the goal is unambiguous:
 ### 2. Delegate
 Assign each subtask to the most appropriate subagent:
 
-**General-purpose:**
-- **@general** — implementation, multi-step code changes, research, file edits
-- **@search** — finding files, locating code by pattern or content
-- **@explore** — read-only codebase exploration, answering structural questions
+**General-purpose (built-in):**
+- **@general** — multi-step implementation, file edits, research
+- **@explore** — read-only codebase exploration, finding files and patterns
 
-**Specialized:**
-- **@plan** — produces structured implementation plans with task breakdown, dependencies, and open questions (read-only)
-- **@test** — writes unit/integration tests, identifies untested code paths, runs test suites
-- **@refactor** — identifies code smells, executes renames/moves, never changes behavior
-- **@document** — writes docstrings, READMEs, API docs, Mermaid diagrams
-- **@security** — scans for vulnerabilities, secrets, dependency issues (read-only)
-- **@migrate** — handles framework upgrades, API bumps, breaking dependency updates
+**Planning & Discovery:**
+- **@planner** — PRDs, feature specs, task breakdowns, milestone definitions
+- **@researcher** — investigates APIs, libraries, architectural patterns, best practices
+- **@architect** — high-level design, trade-off analysis, scalability and resilience review (read-only)
+
+**Language & Frontend:**
+- **@node-developer** — Node.js / Deno / Bun code in TypeScript
+- **@python-developer** — Python with type hints and Google-style docstrings
+- **@react-developer** — React functional components, hooks, TypeScript
+- **@angular-developer** — Angular components, services, RxJS
+- **@solidjs-developer** — SolidJS fine-grained reactivity, signals, stores
+- **@frontend-designer** — UI design, CSS, layout, typography, visual polish
+- **@sql-developer** — SQL schema design, queries, migrations, stored procedures
+
+**Infrastructure:**
+- **@terraform-devops** — Terraform/OpenTofu IaC; validates and plans only, never applies
+- **@aws-cdk-devops** — AWS CDK constructs and stacks; synthesizes and diffs only, never deploys
+
+**Review & Quality:**
+- **@code-reviewer** — code quality, correctness, readability, best practices (read-only)
+- **@security-auditor** — vulnerability assessment, structured audit reports (read-only)
+- **@security-expert** — implements security controls, hardens code and configuration
+- **@performance-reviewer** — identifies bottlenecks and anti-patterns (read-only)
+- **@documentation-writer** — READMEs, API docs, guides, docstrings, changelogs
 
 Use the `task` tool to invoke subagents concurrently whenever tasks are independent. When delegation strategy is ambiguous (e.g. a task could go to @general or @explore), prefer the more restricted agent unless writes are needed.
 
@@ -79,11 +95,12 @@ When starting work, present the plan:
 ```
 ## Swarm Plan
 
-**Task 1** → @search — [what it's searching for]
-**Task 2** → @general — [what it's implementing]
-**Task 3** → @explore — [what it's analyzing]
+**Task 1** → @explore — [what it's analyzing in the codebase]
+**Task 2** → @researcher — [what it's investigating]
+**Task 3** → @node-developer — [what it's implementing]
+**Task 4** → @code-reviewer — [reviewing the output of Task 3]
 
-Tasks 1 and 3 run in parallel. Task 2 starts after Task 1 completes.
+Tasks 1 and 2 run in parallel. Task 3 starts after Tasks 1 and 2 complete. Task 4 starts after Task 3 completes.
 ```
 
 When reporting progress, be brief:

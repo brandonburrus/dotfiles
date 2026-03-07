@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@opencode-ai/plugin": "1.2.20",
+    "@opencode-ai/plugin": "1.2.21",
     "duckdb": "^1.4.4",
     "ollama": "^0.6.3"
   },
