@@ -173,6 +173,100 @@ Use these as jumping-off points, not constraints. The goal is to pick a directio
 
 ---
 
+## Functional/App UI Mode (Uncodixfy Rules)
+
+Apply this mode when building **product UIs**: dashboards, admin tools, SaaS apps, developer tools, internal tools, or any interface where the primary goal is usability and clarity over artistic expression. Reference products: Linear, Raycast, Stripe, GitHub.
+
+When you recognize a functional/app UI context, switch into this mode. The expressive design principles above (atmospheric backgrounds, editorial typography, asymmetric layouts) do not apply. Restraint is the craft.
+
+> **Internal reasoning check**: Before writing any component, list all the "AI default" moves you would normally make — then do none of them.
+
+### Keep It Normal — Component Standards
+
+- **Sidebars**: 240–260px fixed width, solid background, simple `border-right`, no floating shells, no rounded outer corners
+- **Headers**: simple text, no eyebrow labels, no uppercase decorative labels, no gradient text — just `h1`/`h2` with proper hierarchy
+- **Sections**: standard padding 20–30px, no hero blocks inside dashboards, no decorative copy
+- **Navigation**: simple links, subtle hover states, no transform animations, no badges unless functional
+- **Buttons**: solid fills or simple borders, 8–10px radius max, no pill shapes, no gradient backgrounds
+- **Cards**: simple containers, 8–12px radius max, subtle borders, shadows max `0 2px 8px rgba(0,0,0,0.1)`, no floating/glow effect
+- **Forms**: standard inputs, clear labels above fields, no fancy floating labels, simple focus states
+- **Inputs**: solid borders, simple focus ring, no animated underlines, no morphing shapes
+- **Modals**: centered overlay, simple backdrop, no slide-in animations, straightforward close button
+- **Dropdowns**: simple list, subtle shadow, no fancy animations, clear selected state
+- **Tables**: clean rows, simple borders, subtle hover, left-aligned text
+- **Tabs**: simple underline or border indicator, no pill backgrounds, no sliding animations
+- **Badges**: small text, simple border or background, 6–8px radius, no glows, only when functional
+- **Icons**: simple shapes, consistent size 16–20px, no decorative icon backgrounds, monochrome or subtle color
+- **Typography**: system fonts or a clean sans-serif, clear hierarchy, readable body sizes 14–16px — no mixed serif/sans combos for decoration
+- **Spacing**: consistent 4/8/12/16/24/32px scale, no random gaps, no excessive padding
+- **Borders**: `1px solid`, subtle colors, no thick decorative borders, no gradient borders
+- **Shadows**: max `0 2px 8px rgba(0,0,0,0.1)`, no dramatic drop shadows, no colored shadows
+- **Transitions**: 100–200ms ease, simple `opacity`/`color` changes only — no bounce, no transform effects
+- **Layouts**: standard grid/flex, predictable structure, clear content hierarchy — no creative asymmetry
+- **Containers**: max-width 1200–1400px, centered, standard padding
+- **Panels**: simple background differentiation, subtle borders, no floating/detached panels, no glass effects
+- **Toolbars**: simple horizontal layout, standard height 48–56px, clear actions, no decorative elements
+
+### Hard No
+
+- Oversized rounded corners or pill overload
+- Floating glassmorphism shells as the default visual language
+- Soft corporate gradients used to fake taste
+- Generic dark SaaS blue-black composition
+- Decorative sidebar blobs or visual noise
+- Serif headline + system sans as a shortcut to "premium"
+- `Segoe UI`, `Trebuchet MS`, `Arial`, `Inter`, `Roboto`, or safe default stacks unless the product already uses them
+- Sticky left rail unless the information architecture truly requires it
+- Metric-card KPI grid as the first instinct for a dashboard
+- Fake charts or data visualizations that exist only to fill space
+- Random glows, blur haze, frosted panels, or conic-gradient donuts as decoration
+- Hero sections inside internal or app UI unless there is a real product reason
+- Alignment that creates dead space just to look expensive
+- Overpadded layouts
+- Mobile collapse that just stacks everything into one long column with no thought
+- Eyebrow labels (`MARCH SNAPSHOT`, `LIVE PULSE`, uppercase decorative spans)
+- Decorative copy like "Operational clarity without the clutter" as a page header
+- Section notes and mini-notes explaining what the UI does
+- `<small>` used as a heading or eyebrow element
+- Rounded `<span>` chips used decoratively
+- Colors skewing toward blue — prefer dark, muted, calm tones
+
+### Specifically Banned Patterns
+
+These are recurring AI UI mistakes. Recognize and reject them:
+
+| Pattern | Why it's banned |
+|---|---|
+| Border radii in the 20–32px range applied everywhere | Visually homogeneous; signals AI default |
+| Floating sidebar with rounded outer shell | Decorative, not functional |
+| Canvas chart placed in a glass card without product reason | Filler, not data |
+| Donut chart with hand-wavy percentages | Vague and decorative |
+| UI cards using glows instead of hierarchy | Glows are not structure |
+| Mixed alignment (some content left-aligned, some floating center-ish) | Inconsistent grid logic |
+| Muted gray-blue text throughout | Weakens contrast and clarity |
+| "Premium dark mode" = blue-black gradient + cyan accents | No atmosphere, no depth |
+| Eyebrow labels with `letter-spacing` and uppercase | Decorative noise |
+| Hero strip with decorative copy inside a dashboard | Wrong context |
+| Transform animations on nav link hover (`translateX(2px)`) | Gratuitous motion |
+| Dramatic box shadows (`0 24px 60px rgba(0,0,0,0.35)`) | Over-designed depth |
+| Status dots via `::before` pseudo-elements | Overused pattern |
+| Muted uppercase `letter-spacing` labels everywhere | Templated aesthetic |
+| Pipeline/progress bars with gradient fills | Decoration over information |
+| KPI card grid as the default dashboard opener | Clichéd and uninformative |
+| Tables with `.tag` badge on every status cell | Tag overuse |
+| Workspace blocks in sidebar with CTAs | Wrong context for CTA |
+| Brand marks with gradient backgrounds | Unnecessary decoration |
+| Nav badges showing counts or "Live" status labels | Functional clutter |
+| Multiple nested panel types (panel, panel-2, rail-panel) | Structural confusion |
+| Footer lines with meta information about the UI itself | Self-referential noise |
+| Trend indicators with colored text classes (`trend-up`, `trend-flat`) | Cheap, templated |
+
+### The Rule
+
+> If a UI choice feels like a default AI move, ban it and pick the harder, cleaner option. Colors should stay calm, not fight.
+
+---
+
 ## When NOT to Use This Skill
 
 - Auditing or reviewing existing UI against design guidelines (use the `web-design-guidelines` skill instead)
