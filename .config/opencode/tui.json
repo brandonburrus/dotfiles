@@ -3,6 +3,8 @@
   "theme": "neonchalk",
   "keybinds": {
     "messages_half_page_down": "<leader>j",
-    "messages_half_page_up": "<leader>k"
-  },
+    "messages_half_page_up": "<leader>k",
+    "theme_list": "none",
+    "variant_cycle": "<leader>t"
+  }
 }

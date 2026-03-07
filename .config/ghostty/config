@@ -1,4 +1,6 @@
 macos-titlebar-style = tabs
+link-url = true
+link-previews = true
 macos-icon = custom
 macos-shortcuts = allow
 
