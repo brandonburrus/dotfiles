@@ -15,6 +15,8 @@ tools:
   edit: false
   bash: true
 permission:
+  write: deny
+  edit: deny
   bash:
     "ls *": allow
     "cat *": allow

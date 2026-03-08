@@ -4,6 +4,16 @@ description: "Systematic debugger — reproduces issues, traces execution, isola
 mode: primary
 color: "#ff8c00"
 temperature: 0.5
+tools:
+  read: true
+  glob: true
+  grep: true
+  webfetch: true
+  websearch: true
+  question: true
+  write: false
+  edit: false
+  bash: true
 permission:
   write: allow
   edit: allow

@@ -6,6 +6,16 @@ mode: primary
 color: "#364ded"
 temperature: 0.95
 top_p: 0.95
+tools:
+  read: true
+  glob: true
+  grep: true
+  webfetch: true
+  websearch: true
+  question: true
+  write: false
+  edit: false
+  bash: true
 permission:
   write: deny
   edit: deny
