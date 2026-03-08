@@ -7,6 +7,7 @@ export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=$HOMEBREW_PREFIX/share/zsh-syntax-highligh
 export ZSH_THEME="agnoster"
 
 source $ZSH/oh-my-zsh.sh
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 export ALIASES=$HOME/aliases.sh
 export BUN_INSTALL="$HOME/.bun"
@@ -28,17 +29,14 @@ export PATH=$PATH:$DVM_DIR/bin
 export PATH=$PATH:$HOME/.pub-cache/bin
 export PATH=$PATH:$HOME/.local/bin
 
+
 [ -f ~/aliases.sh ] && source ~/aliases.sh
 [ -f ~/.bash_profile ] && source ~/.bash_profile;
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local;
+[ -f ~/.config/opencode/opencode.env ] && source ~/.config/opencode/opencode.env
 
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh" 
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
 [ -s "/Users/brandon/.bun/_bun" ] && source "/Users/brandon/.bun/_bun"
 
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.config/opencode/opencode.env
 
-
-# opencode
-export PATH=/Users/burrubr/.opencode/bin:$PATH
