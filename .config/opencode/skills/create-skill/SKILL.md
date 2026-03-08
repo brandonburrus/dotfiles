@@ -23,9 +23,9 @@ Every skill is a single `SKILL.md` file inside a named directory. The file must 
 | Scope | Path |
 |---|---|
 | Global (available in all projects) | `~/.config/opencode/skills/<name>/SKILL.md` |
-| Project-local | `.opencode/skills/<name>/SKILL.md` |
+| Project-local | `.agents/skills/<name>/SKILL.md` |
 
-Default to global placement unless the user specifies otherwise or the skill is clearly project-specific.
+Default to **global** placement unless the user explicitly asks for a project-local skill or the skill is clearly specific to one project. For project-local skills, resolve the project root as the nearest ancestor directory containing a `.git` file or folder from the current working directory; if that cannot be determined, ask the user for the project path.
 
 ### Frontmatter
 
@@ -105,7 +105,7 @@ Ask the user or infer from context:
 - What does this skill do? What artifact or behavior does it produce?
 - When should an agent load it? What are the trigger conditions?
 - Is it primarily process-oriented (workflow pattern) or output-quality-oriented (style/output pattern)?
-- Should it be global or project-local?
+- Should it be **global** (available in every project, saved to `~/.config/opencode/skills/`) or **project-local** (this project only, saved to `.agents/skills/` inside the project)? Default to global unless told otherwise.
 - Does it reference any external files, tools, MCP servers, or other skills by name?
 
 ### 2. Choose a structural pattern
@@ -147,10 +147,13 @@ Before writing the file, verify:
 
 ### 6. Save and report
 
-Write to `~/.config/opencode/skills/<name>/SKILL.md` (or the project-local path if specified). Create the directory if it does not exist.
+**Global skill:** Write to `~/.config/opencode/skills/<name>/SKILL.md`. Create the directory if it does not exist.
+
+**Project-local skill:** Resolve the project root (nearest `.git` ancestor from the current working directory). Write to `<project-root>/.agents/skills/<name>/SKILL.md`. Create the directory if it does not exist. If the project root cannot be determined, ask the user for the project path before writing.
 
 After saving, tell the user:
 - The full path where the file was written
+- The scope (global or project-local) and what that means for discoverability
 - The name to use when invoking it via the `skill` tool
 - That a session restart may be needed for the skill to appear in the available skills list
 
