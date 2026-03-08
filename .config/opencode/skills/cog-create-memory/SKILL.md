@@ -1,6 +1,6 @@
 ---
 name: cog-create-memory
-description: Proactively capture useful information as long-term memories during any task — use when you discover user preferences, non-obvious solutions, project-specific patterns, or decisions worth remembering. Saves automatically without prompting the user.
+description: Proactively capture useful information as long-term memories during any task — use when you discover user preferences, non-obvious solutions, reusable patterns and approaches, or decisions worth remembering across sessions. Saves automatically without prompting the user.
 ---
 
 ## What I do
@@ -16,8 +16,9 @@ Load this skill when any of the following surface during a task:
   like things structured or explained
 - **Non-obvious solutions** — workarounds, gotchas, or fixes that took real effort to
   discover and would be worth knowing next time
-- **Project patterns** — architectural decisions, naming conventions, or structural
-  patterns specific to a codebase that aren't immediately obvious
+- **Reusable patterns** — architectural approaches, strategies, naming conventions,
+  or structural decisions that would apply across projects or sessions, not
+  one-time project-specific facts
 - **Corrections** — when the user corrects a mistake or clarifies a misunderstanding
   that reveals a preference or constraint worth internalizing
 - **Environment specifics** — tooling versions, config quirks, or setup details that
@@ -31,6 +32,9 @@ Load this skill when any of the following surface during a task:
 - Ephemeral context that only applies to the current task
 - Secrets, credentials, API keys, or any sensitive personal data
 - Information that has no plausible future relevance
+- Project-specific facts that don't generalize (e.g., hardcoded repo names,
+  org-specific config, one-time setup steps) — unless they encode a reusable
+  workflow, strategy, or pattern that would apply in similar contexts
 
 ## Workflow
 

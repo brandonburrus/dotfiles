@@ -22,7 +22,9 @@ Load this skill liberally — err on the side of searching. Good triggers:
 ### 1. Formulate a query
 
 Based on the current task or context, construct a focused natural-language search
-query that captures the key concepts (tools, patterns, decisions, domain).
+query that captures the key concepts (tools, patterns, strategies, domain, decisions).
+Prefer terms that would match reusable knowledge — avoid over-fitting the query
+to project-specific names or one-time details.
 
 ### 2. Search
 
