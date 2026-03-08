@@ -14,6 +14,19 @@
   "plugin": [
     "@franlol/opencode-md-table-formatter@latest"
   ],
+  "lsp": {
+    "pyright": {
+      "disabled": true
+    },
+    "ruff": {
+      "command": ["ruff", "server"],
+      "extensions": [".py", ".pyi"]
+    },
+    "ty": {
+      "command": ["ty", "server"],
+      "extensions": [".py", ".pyi"]
+    },
+  },
   "permission": {
     "read": "allow",
     "edit": "ask",
