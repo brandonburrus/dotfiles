@@ -22,6 +22,4 @@ Using your knowledge, identify the most relevant official documentation page for
 Use the `webfetch` tool to retrieve the URL in markdown format.
 
 **Step 4 — Confirm.**
-Tell the user:
-- Which URL was fetched (and whether it was a best guess)
-- A 1–2 sentence summary of what's now in context
+Reply with a single line: the URL that was fetched (and whether it was a best guess). No summary, no extra output.
