@@ -1,5 +1,6 @@
 ---
 name: Vibe
+description: Near-fully autonomous implementation executor
 mode: primary
 model: github-copilot/claude-sonnet-4.6
 color: "#e8212f"
