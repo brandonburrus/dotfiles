@@ -1,8 +1,10 @@
 macos-titlebar-style = tabs
+bell-features = no-attention
 link-url = true
 link-previews = true
 macos-icon = custom
 macos-shortcuts = allow
+quit-after-last-window-closed = true
 
 title = " "
 maximize = true
