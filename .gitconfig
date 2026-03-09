@@ -34,9 +34,9 @@
     meta = yellow bold
     frag = magenta bold
     old = red bold
-    new = cyan bold
+    new = green bold
 [color "status"]
-    added = cyan bold
+    added = green bold
     changed = cyan
     untracked = red bold
 [hub]

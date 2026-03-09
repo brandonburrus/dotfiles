@@ -29,11 +29,14 @@ export PATH=$PATH:$DVM_DIR/bin
 export PATH=$PATH:$HOME/.pub-cache/bin
 export PATH=$PATH:$HOME/.local/bin
 
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)" > /dev/null
 
 [ -f ~/aliases.sh ] && source ~/aliases.sh
 [ -f ~/.bash_profile ] && source ~/.bash_profile;
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local;
-[ -f ~/.config/opencode/opencode.env ] && source ~/.config/opencode/opencode.env
+[ -f $OPENCODE/opencode.env ] && source $OPENCODE/opencode.env 
 
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh" 
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
