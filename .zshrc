@@ -41,5 +41,4 @@ eval "$(pyenv init - zsh)" > /dev/null
 [ -f $OPENCODE/opencode.env ] && source $OPENCODE/opencode.env 
 
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh" 
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
 [ -s "/Users/brandon/.bun/_bun" ] && source "/Users/brandon/.bun/_bun"
