@@ -11,6 +11,11 @@
       "command": ["cog"],
     },
   },
+  "skills": {
+    "paths": [
+      "~/.copilot/skills"
+    ]
+  },
   "plugin": [
     "@franlol/opencode-md-table-formatter@latest"
   ],
