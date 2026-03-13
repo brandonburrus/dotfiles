@@ -61,14 +61,15 @@ let the user confirm or provide a different one.
 
 ### 6. Get the PR description template
 
-Call `github_get_file_contents` with:
-- `owner`: `RepublicServicesRepository`
-- `repo`: the repo name from step 4
-- `path`: `.github/pull_request_template.md`
+Run the following command to fetch the repo's PR template:
 
-If the file exists, use its content as the base for the PR description.
+```bash
+gh api repos/RepublicServicesRepository/{repo}/contents/.github/pull_request_template.md -q .content | base64 --decode
+```
 
-If the file does **not** exist or the call fails, use this fallback template:
+If the command succeeds, use the decoded content as the base for the PR description.
+
+If the command fails (file not found or any other error), use this fallback template:
 
 ```markdown
 ## Summary
@@ -115,12 +116,17 @@ explicitly approves. Do not create the PR until the user confirms.
 
 ### 9. Create the PR
 
-Call `github_create_pull_request` with:
-- `owner`: `RepublicServicesRepository`
-- `repo`: repo name from step 4
-- `title`: approved title from step 8
-- `body`: approved description from step 8
-- `head`: current branch name (`git branch --show-current`)
-- `base`: confirmed base branch from step 5
+Run `gh pr create` using a HEREDOC to pass the body safely:
+
+```bash
+gh pr create \
+  --repo "RepublicServicesRepository/{repo}" \
+  --title "{approved title}" \
+  --base "{base branch}" \
+  --body "$(cat <<'EOF'
+{approved description}
+EOF
+)"
+```
 
 After the PR is created, display the PR URL to the user.
