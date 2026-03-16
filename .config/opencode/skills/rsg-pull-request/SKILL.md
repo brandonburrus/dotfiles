@@ -109,7 +109,7 @@ US123456: <concise description>
 Present the draft title and description to the user. Ask:
 
 > "Does this look good, or would you like to make any changes before I create
-> the PR?"
+> the draft PR?"
 
 Offer to revise any part of the title or description. Repeat until the user
 explicitly approves. Do not create the PR until the user confirms.
@@ -123,6 +123,7 @@ gh pr create \
   --repo "RepublicServicesRepository/{repo}" \
   --title "{approved title}" \
   --base "{base branch}" \
+  --draft \
   --body "$(cat <<'EOF'
 {approved description}
 EOF

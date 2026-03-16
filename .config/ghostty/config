@@ -1,3 +1,4 @@
+title = " "
 macos-titlebar-style = tabs
 bell-features = no-attention
 link-url = true
@@ -6,7 +7,6 @@ macos-icon = custom
 macos-shortcuts = allow
 quit-after-last-window-closed = true
 
-title = " "
 maximize = true
 
 background = 201d26
