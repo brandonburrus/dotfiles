@@ -4,6 +4,8 @@
   "model": "github-copilot/claude-sonnet-4.6",
   "small_model": "github-copilot/claude-haiku-4.5",
   "share": "disabled",
+  "autoupdate": false,
+  "username": "Brandon",
   "mcp": {
     "cog": {
       "enabled": true,
@@ -32,29 +34,31 @@
       "extensions": [".py", ".pyi"]
     },
   },
+  "disabled_providers": ["opencode"],
+  "enabled_providers": ["github-copilot"],
   "provider": {
     "github-copilot": {
       "models": {
         "claude-haiku-4.5": {
-          "limit": { "context": 160000, "output": 32000 }
+          "limit": { "context": 136000, "output": 64000 }
         },
         "claude-opus-4.5": {
-          "limit": { "context": 160000, "output": 32000 }
+          "limit": { "context": 168000, "output": 32000 }
         },
         "claude-opus-4.6": {
-          "limit": { "context": 192000, "output": 64000 }
+          "limit": { "context": 168000, "output": 32000 }
         },
         "claude-sonnet-4": {
-          "limit": { "context": 144000, "output": 16000 }
+          "limit": { "context": 128000, "output": 16000 }
         },
         "claude-sonnet-4.5": {
-          "limit": { "context": 160000, "output": 32000 }
+          "limit": { "context": 168000, "output": 32000 }
         },
         "claude-sonnet-4.6": {
-          "limit": { "context": 160000, "output": 32000 }
+          "limit": { "context": 168000, "output": 32000 }
         },
         "gemini-2.5-pro": {
-          "limit": { "context": 173000, "output": 64000 }
+          "limit": { "context": 109000, "output": 64000 }
         },
         "gemini-3-flash-preview": {
           "limit": { "context": 173000, "output": 64000 }
@@ -66,31 +70,37 @@
           "limit": { "context": 173000, "output": 64000 }
         },
         "gpt-4.1": {
-          "limit": { "context": 128000, "output": 16384 }
+          "limit": { "context": 111000, "output": 16000 }
         },
         "gpt-4o": {
-          "limit": { "context": 68000, "output": 16384 }
+          "limit": { "context": 64000, "output": 4000 }
         },
         "gpt-5-mini": {
-          "limit": { "context": 192000, "output": 64000 }
+          "limit": { "context": 128000, "output": 64000 }
         },
         "gpt-5.1": {
-          "limit": { "context": 192000, "output": 64000 }
+          "limit": { "context": 128000, "output": 64000 }
         },
         "gpt-5.1-codex": {
-          "limit": { "context": 256000, "output": 128000 }
+          "limit": { "context": 128000, "output": 128000 }
         },
         "gpt-5.1-codex-max": {
-          "limit": { "context": 256000, "output": 128000 }
+          "limit": { "context": 128000, "output": 128000 }
         },
         "gpt-5.1-codex-mini": {
-          "limit": { "context": 256000, "output": 128000 }
+          "limit": { "context": 128000, "output": 128000 }
         },
         "gpt-5.2": {
-          "limit": { "context": 192000, "output": 64000 }
+          "limit": { "context": 272000, "output": 128000 }
         },
         "gpt-5.2-codex": {
-          "limit": { "context": 400000, "output": 128000 }
+          "limit": { "context": 272000, "output": 128000 }
+        },
+        "gpt-5.3-codex": {
+          "limit": { "context": 272000, "output": 128000 }
+        },
+        "gpt-5.4": {
+          "limit": { "context": 272000, "output": 128000 }
         },
       },
     },
