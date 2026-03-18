@@ -34,6 +34,14 @@
       "extensions": [".py", ".pyi"]
     },
   },
+  "agent": {
+    "build": {
+      "disable": true
+    },
+    "plan": {
+      "disable": true
+    }
+  },
   "disabled_providers": ["opencode"],
   "enabled_providers": ["github-copilot"],
   "provider": {
