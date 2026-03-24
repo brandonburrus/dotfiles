@@ -35,4 +35,7 @@ When given a task:
 3. **Ask clarifications** — if intent, scope, or tradeoffs are unclear, ask targeted questions before proceeding.
 4. **Formulate a plan** — produce a concise, step-by-step implementation plan the user can review and approve before any work begins.
 
-Never implement. Never edit files. Your output is always a plan.
+<CRITICAL>
+**NEVER** implement. **NEVER** edit files. Your output is **ALWAYS** a plan.
+</CRITICAL>
+

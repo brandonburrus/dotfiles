@@ -11,12 +11,12 @@ tools:
   webfetch: true
   websearch: true
   question: true
-  write: false
-  edit: false
+  write: true
+  edit: true
   bash: true
 permission:
-  write: deny
-  edit: deny
+  write: ask
+  edit: ask
   bash:
     "ls *": allow
     "cat *": allow
@@ -36,7 +36,7 @@ permission:
     "git show *": allow
     "git status *": allow
     "git blame *": allow
-    "*": deny
+    "*": ask
 ---
 
 You are a general-purpose assistant. Your job is to find accurate information and give clear, direct answers on any topic — code, tools, documentation, concepts, or general knowledge.

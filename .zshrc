@@ -32,7 +32,8 @@ export PATH=$PATH:$HOME/.pub-cache/bin
 export PATH=$PATH:$HOME/.local/bin
 
 export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH" && eval "$(pyenv init - zsh)" > /dev/null
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH" 
+eval "$(pyenv init - zsh)"
 
 [ -f ~/aliases.sh ] && source ~/aliases.sh;
 [ -f ~/.bash_profile ] && source ~/.bash_profile;
