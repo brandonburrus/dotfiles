@@ -1,6 +1,7 @@
 ---
 name: opencode-create-skill
-description: Create a new OpenCode skill by gathering requirements, selecting the right structural pattern, and writing a valid SKILL.md with correct frontmatter and placement
+description: Create a new OpenCode skill (SKILL.md) by gathering requirements, selecting the right structural pattern, and writing valid frontmatter and placement under ~/.config/opencode/skills/ or .opencode/skills/. This skill is for OpenCode (opencode.ai) only — do NOT use for GitHub Copilot skills; use rsg-create-skill instead.
+compatibility: opencode
 ---
 
 ## What I do

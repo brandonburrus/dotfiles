@@ -1,6 +1,7 @@
 ---
 name: opencode-create-command
-description: Create a new OpenCode slash command by gathering requirements and writing a valid markdown command file (or JSON config entry) to the correct global or project path.
+description: Create a new OpenCode slash command by gathering requirements and writing a valid markdown command file (or JSON config entry) under ~/.config/opencode/commands/ or .opencode/commands/. This skill is for OpenCode (opencode.ai) only — do NOT use for GitHub Copilot.
+compatibility: opencode
 ---
 
 ## What I do

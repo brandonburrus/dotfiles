@@ -1,6 +1,7 @@
 ---
 name: opencode-agents-md
-description: Create a new AGENTS.md file at a project root by exploring the codebase and producing a dense, agent-useful living document. Use only when no AGENTS.md exists yet.
+description: Create a new AGENTS.md file at a project root by exploring the codebase and producing a dense, agent-useful living document. Use only when no AGENTS.md exists yet. This skill is for OpenCode (opencode.ai) only.
+compatibility: opencode
 ---
 
 ## What I do

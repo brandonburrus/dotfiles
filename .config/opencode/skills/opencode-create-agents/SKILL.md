@@ -1,6 +1,7 @@
 ---
 name: opencode-create-agents
-description: Create a new OpenCode agent (primary or subagent) by gathering requirements, selecting the right mode, configuring tools and permissions, and writing a valid markdown agent file to the correct global or project path.
+description: Create a new OpenCode agent (primary or subagent) by gathering requirements, selecting the right mode, configuring tools and permissions, and writing a valid markdown agent file under ~/.config/opencode/agents/ or .opencode/agents/. This skill is for OpenCode (opencode.ai) only — do NOT use for GitHub Copilot agents; use rsg-create-agent instead.
+compatibility: opencode
 ---
 
 ## What I do

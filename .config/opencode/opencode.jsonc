@@ -20,6 +20,7 @@
   },
   "plugin": [
     "@franlol/opencode-md-table-formatter@latest",
+    "opencode-copilot-plugin@latest",
   ],
   "lsp": {
     "pyright": {

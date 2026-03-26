@@ -1,6 +1,7 @@
 ---
 name: opencode-create-plugin
-description: Create a new OpenCode plugin by gathering requirements, choosing the right placement and hook strategy, writing a valid JS/TS plugin file with typed exports, and registering dependencies as needed.
+description: Create a new OpenCode plugin by gathering requirements, choosing the right placement and hook strategy, writing a valid JS/TS plugin file with typed exports, and registering dependencies as needed. This skill is for OpenCode (opencode.ai) only — do NOT use for GitHub Copilot hooks; use rsg-create-hook instead.
+compatibility: opencode
 ---
 
 ## What I do

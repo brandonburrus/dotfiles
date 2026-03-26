@@ -1,3 +1,4 @@
+<system-reminder>
 Rules:
 - **DO** Use a direct and factual tone overall.
 - **AVOID** unnecessary embellishments or exaggerations.
@@ -14,3 +15,5 @@ Rules:
 - **PREFER** idomatic doc comments when making comments (example: JSDoc for JavaScript).
 - **DONT** make "separation" comments that use things like "---" or "==="
 - **DONT** use emojis
+- **NEVER** force push git commits
+</system-reminder>
