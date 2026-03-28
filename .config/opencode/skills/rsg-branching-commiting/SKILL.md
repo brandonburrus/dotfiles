@@ -9,6 +9,10 @@ Guide the full local git workflow for RSG work: create a correctly named branch
 for the Rally artifact, then stage and commit changes with properly prefixed
 commit messages.
 
+All git operations use `rsgdev git` instead of bare `git`. The `rsgdev git`
+wrapper works identically to `git` but automatically adds a coauthor trailer
+to commits.
+
 ## When to use me
 
 - The user is starting new work tied to a Rally user story or defect in an RSG repo
@@ -59,7 +63,7 @@ Rules:
 
 ### 1. Identify the Rally artifact ID
 
-Run `git branch --show-current` and look for a `US` or `DE` number using the
+Run `rsgdev git branch --show-current` and look for a `US` or `DE` number using the
 pattern `(US|DE)\d+`.
 
 - If found on the current branch, extract it and skip to step 5 (no new branch needed).
@@ -87,14 +91,14 @@ US123456_add_auth_middleware
 Ask for explicit confirmation before creating. Once confirmed, run:
 
 ```bash
-git checkout -b <branch-name>
+rsgdev git checkout -b <branch-name>
 ```
 
 Report the newly active branch to the user.
 
 ### 4. Check git status
 
-Run `git status` to inspect the working tree.
+Run `rsgdev git status` to inspect the working tree.
 
 If the working tree is **clean** (nothing to commit), report this to the user
 and exit — do not continue with the remaining steps.
@@ -102,7 +106,7 @@ and exit — do not continue with the remaining steps.
 ### 5. Show uncommitted changes and plan commits
 
 Display a summary of all uncommitted changes (both staged and unstaged) using
-`git diff --stat` and `git status --short`.
+`rsgdev git diff --stat` and `rsgdev git status --short`.
 
 Ask the user how they want to group the changes:
 - **Single commit** — all changes in one commit (suggest this when the diff is
@@ -115,17 +119,17 @@ Ask the user how they want to group the changes:
 For each planned commit:
 
 1. **Select files to stage** — present the list of changed files and confirm
-   which ones belong to this commit. Use `git add <files>` to stage them.
-   Never use `git add .` or `git add -A` without explicit confirmation of
+   which ones belong to this commit. Use `rsgdev git add <files>` to stage them.
+   Never use `rsgdev git add .` or `rsgdev git add -A` without explicit confirmation of
    every file being included.
 
 2. **Draft the commit message** — compose a message following the commit
    message rules above.
 
 3. **Present the draft** — show the full commit message to the user and ask
-   for confirmation or changes before running `git commit`.
+   for confirmation or changes before running `rsgdev git commit`.
 
-4. **Run the commit** — once approved, execute `git commit -m "<message>"` (or
+4. **Run the commit** — once approved, execute `rsgdev git commit -m "<message>"` (or
    with multiple `-m` flags for a multi-line message).
 
 ### 7. Repeat for additional commits
@@ -135,5 +139,5 @@ of files.
 
 ### 8. Report final status
 
-After all commits are complete, run `git status` and `git log --oneline -5` to
+After all commits are complete, run `rsgdev git status` and `rsgdev git log --oneline -5` to
 show the user the clean working tree and the new commit(s).

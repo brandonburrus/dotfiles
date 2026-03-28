@@ -25,6 +25,7 @@ permission:
     "git log *": allow
     "git diff *": allow
     "git status *": allow
+    "rsgdev git *": ask
     "openssl *": allow
     "curl --head *": allow
 ---

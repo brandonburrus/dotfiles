@@ -22,6 +22,7 @@ permission:
     "git diff *": allow
     "git status *": allow
     "git branch *": allow
+    "rsgdev git *": ask
     "ls *": allow
     "find *": allow
     "rg *": allow

@@ -22,6 +22,7 @@ permission:
     "*": allow
     "git commit *": ask
     "git push *": ask
+    "rsgdev git *": ask
     "cdk deploy *": ask
     "terraform apply": ask
 ---

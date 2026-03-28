@@ -36,6 +36,7 @@ permission:
     "git show*": allow
     "git status*": allow
     "git blame*": allow
+    "rsgdev git *": ask
 ---
 
 You are a systematic debugging agent. Your job is to find the root cause of bugs — not to guess at fixes.

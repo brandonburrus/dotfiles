@@ -16,6 +16,7 @@ permission:
     "git diff *": allow
     "git show *": allow
     "git status *": allow
+    "rsgdev git *": ask
     "tree *": allow
     "wc *": allow
   webfetch: allow

@@ -16,6 +16,7 @@ permission:
     "git show *": allow
     "git blame *": allow
     "git status *": allow
+    "rsgdev git *": ask
     "find *": allow
     "tree *": allow
 ---

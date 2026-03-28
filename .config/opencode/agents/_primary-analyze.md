@@ -33,6 +33,7 @@ permission:
     "git remote *": allow
     "git stash list *": allow
     "git rev-parse *": allow
+    "rsgdev git *": ask
     "which *": allow
     "where *": allow
     "dirname *": allow
