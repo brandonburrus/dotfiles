@@ -58,12 +58,55 @@ Do not draft until you have enough information to write a complete, meaningful A
 
 **Location:** `specs/adr/<slug>.md`
 
-**Template:**
+**Template (standard):**
 ```markdown
 # ADR: <Title>
 
 **Date:** YYYY-MM-DD
 **Status:** Proposed | Accepted | Superseded by [slug]
+
+## Context
+
+What situation or problem prompted this decision? What constraints existed?
+Be specific — include team knowledge, timeline pressure, existing infrastructure, or any other factor that shaped the decision space.
+
+## Decision
+
+What was decided, stated clearly and directly.
+
+## Alternatives Considered
+
+- **<Option A>** — Description of the option and the specific reason it was not chosen.
+- **<Option B>** — Description of the option and the specific reason it was not chosen.
+
+## Consequences
+
+### What becomes easier
+- ...
+
+### What becomes harder or is constrained
+- ...
+
+### New obligations or follow-up work
+- ...
+```
+
+**Template (Obsidian — use when `.obsidian` directory is present at project root):**
+```markdown
+---
+date: YYYY-MM-DD
+status: Proposed
+tags:
+  - swf/adr
+  - proposed
+aliases:
+  - ADR: <Title>
+---
+
+# ADR: <Title>
+
+> [!abstract] Decision
+> One-sentence summary of what was decided.
 
 ## Context
 
@@ -115,6 +158,17 @@ ADRs are **immutable once accepted**. This is not a suggestion — it is a core 
 6. Save to `specs/adr/<slug>.md` with Status: `Proposed`.
 7. When the user confirms the decision is made (not just proposed), update Status to `Accepted`.
 8. If superseding an existing ADR, update the old ADR's Status line.
+
+## Obsidian Compatibility
+
+Before writing any ADR, check whether the project root contains a `.obsidian` directory. If it does, load the `obsidian-md` skill and use the Obsidian template above instead of the standard one.
+
+In Obsidian projects:
+- Use YAML frontmatter for `date`, `status`, `tags`, and `aliases` instead of bold-text metadata fields.
+- Use a `> [!abstract]` callout immediately after the title as a one-sentence decision summary — this surfaces the key decision in Obsidian's reading view without requiring the reader to scroll.
+- Use wikilinks when referencing other ADRs: `See [[adr/evaluate-mysql]]` or `Superseded by [[adr/new-slug]]`.
+- Use wikilinks when referencing the architecture doc: `This updates [[ARCHITECTURE#Data Storage]]`.
+- When superseding an ADR, update the old ADR's `status` frontmatter to `Superseded by [[adr/new-slug]]` and change its `tags` entry from `accepted` to `superseded`. The status frontmatter field and tags list are the only fields you may change in an accepted ADR — all body content remains immutable.
 
 ## Quality Rules
 

@@ -125,6 +125,29 @@ You are invoked during the SPEC and REFINE SPECS phases of the SWF work loop, be
 
 ---
 
+### 6. Obsidian Compatibility (conditional)
+
+**Only apply this section when a `.obsidian` directory exists at the project root.**
+
+These checks are advisory (`[WARN]` only — they do not block work):
+
+**Frontmatter presence:** Check that each Markdown spec file (`PRD.md`, feature specs, ADRs) has a YAML frontmatter block at the top of the file. Flag files that are missing frontmatter as `[WARN]`.
+
+**Tag conventions:** If frontmatter is present, check that:
+- `PRD.md` has `swf/prd` in its `tags` list
+- Feature spec files have `swf/feature` in their `tags` list
+- ADR files have `swf/adr` in their `tags` list
+
+Flag missing or incorrect tags as `[WARN]`.
+
+**ADR status tag sync:** For ADR files, check that the value in the `tags` list (`proposed`, `accepted`, or `superseded`) matches the `status` frontmatter field. Flag mismatches as `[WARN]`.
+
+**Wikilink resolution:** For any wikilink of the form `[[features/<name>]]` found in spec files, check that `specs/features/<name>.md` exists. Flag broken wikilinks as `[WARN]`. Apply the same check for `[[adr/<slug>]]` references.
+
+Do not flag the absence of wikilinks as an error — using them is optional even in Obsidian projects.
+
+---
+
 ## Output Format
 
 Produce a structured validation report:
@@ -178,6 +201,13 @@ Produce a structured validation report:
 ### Cross-Document Consistency
 [WARN] Roadmap item "Notification System" has no corresponding feature spec in specs/features/
 [FAIL] Task "fix-login-redirect-bugfix.yaml" references feature "login" — no specs/features/login.md found
+
+---
+
+### Obsidian Compatibility
+[WARN] specs/features/chat.md — missing YAML frontmatter
+[WARN] specs/adr/use-postgresql.md — tags list missing "swf/adr"
+[WARN] specs/features/notifications.md — wikilink [[features/push-service]] not resolved
 ```
 
 ## Severity Levels

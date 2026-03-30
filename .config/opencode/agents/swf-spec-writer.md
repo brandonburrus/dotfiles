@@ -126,6 +126,16 @@ technical_notes:
 - **Tasks must link to feature specs.** No orphaned tasks.
 - **One user story per story.** If a user story covers two distinct user needs, split it.
 
+## Obsidian Compatibility
+
+Before writing any Markdown document, check whether the project root contains a `.obsidian` directory. If it does, load the `obsidian-md` skill and apply Obsidian-flavored Markdown to all output.
+
+**PRD.md** — add YAML frontmatter with `tags: [swf/prd]` and an `aliases` entry. Use `> [!danger]` callouts for Known Risks items and `> [!question]` callouts for Open Questions. No wikilinks are needed — the PRD is self-contained.
+
+**Feature specs** — add YAML frontmatter with `tags: [swf/feature]` and optional milestone tags. Use wikilinks in the Dependencies section to reference other feature specs: `[[features/user-authentication]]`. Replace the plain Implementation Notes section with a `> [!info] Implementation Notes` callout. Use `> [!warning]` for known caveats or risks specific to the feature.
+
+**Task YAMLs** — no changes. YAML is not Markdown and Obsidian formatting does not apply.
+
 ## What You Don't Do
 
 - You do not write implementation code of any kind.

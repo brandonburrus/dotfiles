@@ -160,7 +160,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 **Filename format:** `<slug>.md` (e.g., `use-postgresql-for-primary-db.md`, `adopt-event-sourcing.md`)
 
-**Template:**
+**Template (standard):**
 ```markdown
 # ADR: <Title>
 
@@ -181,6 +181,44 @@ What was decided?
 What becomes easier or harder as a result of this decision?
 What new constraints does this introduce?
 ```
+
+**Template (Obsidian — use when `.obsidian` directory is present):**
+```markdown
+---
+date: YYYY-MM-DD
+status: Proposed
+tags:
+  - swf/adr
+  - proposed
+aliases:
+  - ADR: <Title>
+---
+
+# ADR: <Title>
+
+> [!abstract] Decision
+> One-sentence summary of what was decided.
+
+## Context
+What situation or problem prompted this decision? What constraints exist?
+
+## Decision
+What was decided?
+
+## Alternatives Considered
+- **Option A** — Description and why it was not chosen
+- **Option B** — Description and why it was not chosen
+
+## Consequences
+
+### What becomes easier
+- ...
+
+### What becomes harder or is constrained
+- ...
+```
+
+When superseding an existing ADR in Obsidian projects, update the old ADR's `status` frontmatter field to `Superseded by [[adr/new-slug]]` and update its `tags` from `accepted` to `superseded`.
 
 **When to create an ADR:**
 - Any architectural choice with meaningful tradeoffs
@@ -205,7 +243,7 @@ What new constraints does this introduce?
 6. **Testing** — How the feature will be verified, including key test scenarios and both manual and automated testing strategies
 7. **Implementation Notes** — Considerations developers should know: potential challenges, performance implications, security concerns
 
-**Example:**
+**Example (standard):**
 ```markdown
 # Chat Feature
 
@@ -235,6 +273,46 @@ Manual: end-to-end send/receive across two sessions, network interruption handli
 ## Implementation Notes
 - Implement message pagination to avoid performance degradation at scale.
 - Sanitize all message content to prevent XSS.
+```
+
+**Example (Obsidian — use when `.obsidian` directory is present):**
+```markdown
+---
+tags:
+  - swf/feature
+  - mvp
+aliases:
+  - Chat
+---
+
+# Chat Feature
+
+## Overview
+The chat feature allows users to send and receive messages in real-time...
+
+## User Stories
+- As a user, I want to send messages to other users so that I can communicate with them.
+- As a user, I want to see when other users are typing so that I can have a more interactive experience.
+
+## Acceptance Criteria
+- Users can send and receive messages in real-time.
+- Typing indicators are shown when another user is composing.
+- The feature is responsive on desktop and mobile.
+
+## Design
+WebSocket-based real-time communication. Frontend renders a message thread per conversation...
+
+## Dependencies
+- Requires: [[features/user-authentication]]
+- Requires: [[features/notifications]]
+
+## Testing
+Automated: unit tests for message validation, integration tests for WebSocket lifecycle.
+Manual: end-to-end send/receive across two sessions, network interruption handling.
+
+> [!info] Implementation Notes
+> - Implement message pagination to avoid performance degradation at scale.
+> - Sanitize all message content to prevent XSS.
 ```
 
 ---
@@ -357,11 +435,120 @@ Then return to **PLAN**.
 
 ---
 
+## Obsidian Compatibility
+
+When the project root contains a `.obsidian` directory, all SWF Markdown documents should use Obsidian-flavored Markdown. Load the `obsidian-md` skill for the full syntax reference before producing any spec content.
+
+**Detection:** Check for a `.obsidian` directory at the project root (the same directory that contains `specs/`). If present, apply all guidance below. If absent, use standard Markdown and skip this section.
+
+### What changes
+
+**All spec Markdown files** gain YAML frontmatter properties:
+
+```yaml
+---
+tags:
+  - swf/prd        # or swf/feature, swf/adr, swf/roadmap, swf/changelog
+aliases:
+  - Human-readable alternate title
+---
+```
+
+**PRD.md** — add frontmatter and use callouts for high-signal sections:
+
+```markdown
+---
+tags:
+  - swf/prd
+aliases:
+  - Product Requirements
+---
+
+> [!danger] Known Risks
+> - Risk one with mitigation
+> - Risk two with mitigation
+
+> [!question] Open Questions
+> - Question one
+> - Question two
+```
+
+**Feature specs** — add frontmatter, wikilinks for dependencies, callouts for notes and caveats:
+
+```markdown
+---
+tags:
+  - swf/feature
+  - mvp            # optional milestone tags
+aliases:
+  - Chat
+---
+
+## Dependencies
+- Requires: [[features/user-authentication]]
+- Requires: [[features/notifications]]
+
+> [!info] Implementation Notes
+> - Consider message pagination at scale
+> - Sanitize all content to prevent XSS
+
+> [!warning] Known Caveats
+> - WebSocket connections do not survive server restarts without reconnect logic
+```
+
+**ADRs** — replace bold-text metadata with frontmatter; use wikilinks for cross-references:
+
+```markdown
+---
+date: 2024-03-15
+status: Accepted        # Proposed | Accepted | Superseded by [[adr/new-slug]]
+tags:
+  - swf/adr
+  - accepted            # mirrors status for filtering
+aliases:
+  - Use PostgreSQL for Primary Database
+---
+
+> [!abstract] Decision
+> We will use PostgreSQL as the primary relational database.
+
+## Context
+...
+
+## Alternatives Considered
+- **MySQL** — See [[adr/evaluate-mysql]] for the full evaluation.
+```
+
+**ROADMAP.md** — use wikilinks to reference feature specs; use task list checkboxes for progress:
+
+```markdown
+## Now
+- [ ] [[features/user-authentication]] — foundation for all user-facing features
+- [x] [[features/onboarding]] — shipped in v1.1
+```
+
+**CHANGELOG.md** — Keep a Changelog format is already Obsidian-compatible. Optionally add wikilinks when describing what was delivered:
+
+```markdown
+### Added
+- Users can now send real-time messages. See [[features/chat]] for full spec.
+```
+
+### What does NOT change
+
+- **Task YAML files** — YAML is not Markdown; no Obsidian formatting applies
+- **CHANGELOG structure** — Keep a Changelog format is preserved exactly; wikilinks are optional additions only
+- **Report output** — Validation reports and review verdicts are plain text for readability in any context
+
+---
+
 ## Bootstrapping a New Project
 
 When setting up SWF for a project for the first time:
 
-1. Ask the user the following questions (do not skip any):
+1. Check if the project root contains a `.obsidian` directory. If so, load the `obsidian-md` skill now — all generated spec documents will use Obsidian-flavored Markdown.
+
+2. Ask the user the following questions (do not skip any):
    - What is this project? What problem does it solve?
    - Who are the target users?
    - What does success look like? How will you measure it?

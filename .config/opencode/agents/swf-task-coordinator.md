@@ -199,6 +199,27 @@ When asked for a project status report, produce:
 
 ---
 
+## Obsidian Compatibility
+
+Before updating any Markdown file, check whether the project root contains a `.obsidian` directory. If it does, load the `obsidian-md` skill and apply the guidance below.
+
+**CHANGELOG.md** — Keep a Changelog format is already Obsidian-compatible; no structural changes are required. Optionally add wikilinks when describing completed work to connect entries back to their feature spec:
+
+```markdown
+### Added
+- Users can now send real-time messages. See [[features/chat]] for the full spec.
+```
+
+**ROADMAP.md** — Use wikilinks to reference feature specs from roadmap items so readers can navigate directly to the spec. Use task list checkboxes for sub-item progress tracking:
+
+```markdown
+## Now
+- [ ] [[features/user-authentication]] — foundation for all user-facing features
+- [x] [[features/onboarding]] — completed in v1.1
+```
+
+**Status reports** — Status reports are plain text output for readability in any context. Do not apply Obsidian callout or wikilink syntax to report output.
+
 ## Rules
 
 - **Never move a task to `done/` without all DoD conditions met.** No exceptions.
