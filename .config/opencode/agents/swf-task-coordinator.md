@@ -63,14 +63,15 @@ todo/ → in-progress/ → in-review/ → done/
 - Read `specs/PRD.md` to understand what outcomes matter most
 
 ### Step 2: Scan available tasks
-- List all YAML files in `specs/work/todo/`
-- Parse each task's `blocked_by` field
+- List all `.md` files in `specs/work/todo/`
+- Read each task's frontmatter to extract its `blocked_by` field
 
 ### Step 3: Resolve dependencies
 For each task in `todo/`:
-1. Check if each `blocked_by` entry exists as a file in `specs/work/done/`
-2. If all `blocked_by` tasks are in `done/` (or there are none): task is **available**
-3. If any `blocked_by` task is NOT in `done/`: task is **blocked**
+1. Read the `blocked_by` frontmatter field — each entry is a wikilink of the form `[[work/done/<task-name>]]`
+2. Check if each referenced task file exists in `specs/work/done/`
+3. If all `blocked_by` tasks are in `done/` (or there are none): task is **available**
+4. If any `blocked_by` task is NOT in `done/`: task is **blocked**
 
 Move any blocked tasks from `todo/` to `blocked/`.
 
@@ -93,10 +94,11 @@ Present the selected task to the user:
 ## Starting a Task
 
 When a task is ready to begin:
-1. Verify the linked feature spec exists at `specs/features/<feature>.md`
-2. Verify the linked feature spec has all 7 required sections (or flag the gap)
-3. Move the task file from `todo/` → `in-progress/`
-4. Confirm to the user: "Task moved to in-progress. Ready for implementation."
+1. Read the task's `feature` frontmatter field — it is a wikilink of the form `[[features/<name>]]`
+2. Verify the linked feature spec exists at `specs/features/<name>.md`
+3. Verify the linked feature spec has all 7 required sections (or flag the gap)
+4. Move the task file from `todo/` → `in-progress/`
+5. Confirm to the user: "Task moved to in-progress. Ready for implementation."
 
 ---
 
@@ -160,8 +162,9 @@ When all Definition of Done conditions are met:
 3. Update `specs/ROADMAP.md`:
    - Remove or mark complete any roadmap item this task fully delivers on
    - If the task is part of a larger feature not yet complete, leave the roadmap item and note progress
-4. Check if any tasks in `blocked/` had this task in their `blocked_by` list:
-   - Re-check their full `blocked_by` list
+4. Check if any tasks in `blocked/` had this task in their `blocked_by` frontmatter list:
+   - Re-read each blocked task's full `blocked_by` list
+   - For each entry (wikilink), check whether the referenced file now exists in `done/`
    - If all their dependencies are now in `done/`, move them from `blocked/` → `todo/`
 
 ---
@@ -201,7 +204,7 @@ When asked for a project status report, produce:
 
 ## Obsidian Compatibility
 
-Before updating any Markdown file, check whether the project root contains a `.obsidian` directory. If it does, load the `obsidian-md` skill and apply the guidance below.
+All SWF documents use Obsidian-flavored Markdown. Load the `obsidian-md` skill when producing or updating any spec content.
 
 **CHANGELOG.md** — Keep a Changelog format is already Obsidian-compatible; no structural changes are required. Optionally add wikilinks when describing completed work to connect entries back to their feature spec:
 

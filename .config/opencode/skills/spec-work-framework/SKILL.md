@@ -33,15 +33,15 @@ specs/
 │   └── <feature-name>.md
 └── work/
     ├── todo/
-    │   └── <task-name>-<type>.yaml
+    │   └── <task-name>-<type>.md
     ├── in-progress/
-    │   └── <task-name>-<type>.yaml
+    │   └── <task-name>-<type>.md
     ├── in-review/
-    │   └── <task-name>-<type>.yaml
+    │   └── <task-name>-<type>.md
     ├── blocked/
-    │   └── <task-name>-<type>.yaml
+    │   └── <task-name>-<type>.md
     └── done/
-        └── <task-name>-<type>.yaml
+        └── <task-name>-<type>.md
 ```
 
 ---
@@ -323,9 +323,9 @@ Manual: end-to-end send/receive across two sessions, network interruption handli
 
 **What they are:** The smallest actionable unit of work. Every task is either a user story implementation or a bugfix. Tasks should be scoped small enough to be completed as a single unit.
 
-**Filename format:** `<name>-<type>.yaml`
+**Filename format:** `<name>-<type>.md`
 - Types: `user-story` or `bugfix`
-- Examples: `send-chat-message-user-story.yaml`, `fix-message-ordering-bugfix.yaml`
+- Examples: `send-chat-message-user-story.md`, `fix-message-ordering-bugfix.md`
 
 **Task lifecycle directories:**
 - `todo/` — Defined, not yet started
@@ -334,23 +334,81 @@ Manual: end-to-end send/receive across two sessions, network interruption handli
 - `blocked/` — Cannot proceed due to an unresolved dependency or external blocker
 - `done/` — Fully complete, reviewed, and accepted (move file here after review passes)
 
-**Task YAML schema:**
+**Task format:**
 
-```yaml
+Tasks are Markdown files with YAML frontmatter for structured fields and a Markdown body for the description, acceptance criteria, and technical notes.
+
+```markdown
+---
 title: "Short description of the task"
-type: user-story  # or: bugfix
-feature: "<feature-name>"  # must match a filename in specs/features/ (without .md)
-description: "Full description. For user-story: 'As a <user>, I want to <action> so that <outcome>.' For bugfix: describe the bug and expected vs actual behavior."
-acceptance_criteria:
-  - "Specific, testable criterion"
-  - "Another criterion"
+type: user-story
+feature: "[[features/chat]]"
+tags:
+  - swf/task
+  - user-story
 blocked_by:
-  - "<task-filename-without-extension>"  # e.g., "setup-auth-user-story". Agent checks if this task is in done/ before starting.
+  - "[[work/done/setup-auth-user-story]]"
 review_focus:
-  - performance   # optional: triggers performance review subagent
-  - security      # optional: triggers security review subagent
-technical_notes:
-  - "Implementation guidance, constraints, or known gotchas"
+  - performance
+  - security
+---
+
+As a <user>, I want to <action> so that <outcome>.
+
+## Acceptance Criteria
+
+- [ ] Specific, testable criterion
+- [ ] Another independently verifiable criterion
+
+## Technical Notes
+
+> [!info] Implementation Guidance
+> - Implementation constraint or known gotcha
+> - Another note for the developer
+```
+
+**Frontmatter field rules:**
+
+- `title` — required; short imperative description
+- `type` — required; must be exactly `user-story` or `bugfix`
+- `feature` — required; wikilink to the feature spec: `"[[features/<name>]]"`
+- `tags` — required; always include `swf/task` and the type value (`user-story` or `bugfix`)
+- `blocked_by` — optional; list of wikilinks to tasks this depends on: `"[[work/done/<task-name>]]"`. Use the `done/` path — the agent checks that path to confirm the dependency is resolved.
+- `review_focus` — optional; omit entirely if neither `performance` nor `security` applies
+
+**Body content rules:**
+
+- The description is the first line(s) of body content, with no heading. For `user-story`: `As a <user>, I want to <action> so that <outcome>.` For `bugfix`: describe the bug, expected behavior, and actual behavior.
+- Acceptance criteria are a task list under `## Acceptance Criteria` using `- [ ]` items. Each criterion must be independently verifiable — no vague language.
+- Technical notes are under `## Technical Notes` inside a `> [!info]` callout. Do not describe implementation steps — leave execution decisions to the developer.
+
+**Bugfix variant:**
+
+```markdown
+---
+title: "Fix message ordering in conversation thread"
+type: bugfix
+feature: "[[features/chat]]"
+tags:
+  - swf/task
+  - bugfix
+---
+
+Messages in a conversation thread are occasionally rendered out of chronological order when multiple messages arrive within the same second.
+
+**Expected:** Messages appear in the order they were sent, oldest first.
+**Actual:** Messages with identical server timestamps render in an unpredictable order.
+
+## Acceptance Criteria
+
+- [ ] Messages with the same timestamp are ordered by insertion sequence
+- [ ] Existing message order is not disrupted for timestamps that differ by more than 1 second
+
+## Technical Notes
+
+> [!info] Implementation Guidance
+> - The ordering bug likely originates in the sort comparator in the message list reducer
+> - A secondary sort key (e.g., message ID) will resolve ties deterministically
 ```
 
 **Definition of Done:** A task is only moved to `done/` when ALL of the following are true:
@@ -389,7 +447,7 @@ Do not proceed to WORK until specs are confirmed by the user.
 ### Phase 3: REFINE SPECS
 - Present the drafted/updated specs to the user
 - Iterate until the user confirms the specs accurately reflect their intent
-- Update the feature spec and task YAML to reflect any refinements
+- Update the feature spec and task spec to reflect any refinements
 - This step must occur before any implementation begins
 
 ### Phase 4: WORK
@@ -401,14 +459,14 @@ Do not proceed to WORK until specs are confirmed by the user.
 ### Phase 5: TEST
 - Write automated tests that cover the implementation
 - All tests must pass before proceeding
-- Test coverage should reflect the acceptance criteria in the task YAML
+- Test coverage should reflect the acceptance criteria in the task spec
 
 ### Phase 6: REVIEW
 Move the task file to `in-review/` and launch review subagents:
 
 **Fulfillment Review (always required):**
 - Use a dedicated subagent that has NOT worked on the implementation
-- The reviewer reads the task YAML and feature spec, then reviews the code and tests
+- The reviewer reads the task spec and feature spec, then reviews the code and tests
 - Verifies: all acceptance criteria are met, tests exist and are meaningful, implementation matches spec
 - If issues are found, the reviewer and implementer go back and forth until the reviewer is satisfied
 - The fulfillment review subagent has final say on spec fulfillment
@@ -536,7 +594,6 @@ aliases:
 
 ### What does NOT change
 
-- **Task YAML files** — YAML is not Markdown; no Obsidian formatting applies
 - **CHANGELOG structure** — Keep a Changelog format is preserved exactly; wikilinks are optional additions only
 - **Report output** — Validation reports and review verdicts are plain text for readability in any context
 
@@ -569,7 +626,7 @@ When setting up SWF for a project for the first time:
 
 7. For each roadmap item, ask the user enough questions to draft the corresponding feature spec in `specs/features/`.
 
-8. Break approved feature specs into tasks and place them in `specs/work/todo/`.
+8. Break approved feature specs into task specs (`.md` files) and place them in `specs/work/todo/`.
 
 9. Review all created specs with the user before beginning any implementation work.
 

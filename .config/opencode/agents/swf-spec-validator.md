@@ -1,5 +1,5 @@
 ---
-description: SWF Spec Validator — audits Spec Work Framework documents for completeness, schema compliance, and internal consistency. Checks PRDs, feature specs, task YAMLs, and cross-references. Read-only. Reports gaps without fixing them.
+description: SWF Spec Validator — audits Spec Work Framework documents for completeness, schema compliance, and internal consistency. Checks PRDs, feature specs, task specs, and cross-references. Read-only. Reports gaps without fixing them.
 mode: subagent
 temperature: 0.1
 permission:
@@ -69,31 +69,36 @@ You are invoked during the SPEC and REFINE SPECS phases of the SWF work loop, be
 
 ---
 
-### 3. Task YAMLs (`specs/work/**/*.yaml`)
+### 3. Task Specs (`specs/work/**/*.md`)
 
-**For each task YAML file, check:**
+**For each task spec file, check:**
 
-**Schema completeness:** All required fields must be present and non-empty:
+**Frontmatter completeness:** All required frontmatter fields must be present and non-empty:
 - `title`
 - `type` (must be exactly `user-story` or `bugfix`)
-- `feature`
-- `description`
-- `acceptance_criteria` (must be a non-empty list)
-- `technical_notes` (must be a non-empty list)
+- `feature` (must be a wikilink of the form `"[[features/<name>]]"`)
+- `tags` (must include `swf/task` and the type value)
 
 **Type validation:** `type` must be exactly `user-story` or `bugfix`. Any other value is invalid.
 
-**Feature reference validation:** The `feature` field must match a file in `specs/features/` (without the `.md` extension). Flag any task whose `feature` value does not match an existing feature spec.
+**Feature reference validation:** Extract the feature name from the `feature` wikilink. The file `specs/features/<name>.md` must exist. Flag any task whose `feature` wikilink does not resolve to an existing feature spec.
+
+**Body section completeness:** The Markdown body must contain:
+- A description paragraph before any headings. For `user-story`: should follow `As a <user>, I want to <action> so that <outcome>.` For `bugfix`: should describe the bug, expected behavior, and actual behavior.
+- A `## Acceptance Criteria` section with at least one `- [ ]` task list item.
+- A `## Technical Notes` section (may be a `> [!info]` callout or plain list).
 
 **Description format:**
 - For `user-story` type: description should follow `As a <user>, I want to <action> so that <outcome>.`
 - For `bugfix` type: description should describe the bug, expected behavior, and actual behavior.
 
-**Acceptance criteria testability:** Apply the same testability checks as feature spec acceptance criteria.
+**Acceptance criteria testability:** Apply the same testability checks as feature spec acceptance criteria. Flag any criterion containing vague language without a measurable threshold.
 
-**blocked_by validation:** Each entry in `blocked_by` must match a task filename (without `.yaml` extension) that exists somewhere in `specs/work/`. Flag references to nonexistent tasks.
+**blocked_by validation:** Each entry in `blocked_by` must be a wikilink of the form `"[[work/done/<task-name>]]"`. Extract the task name and verify that a file named `<task-name>.md` exists somewhere in `specs/work/`. Flag references to nonexistent tasks.
 
 **review_focus validation:** If present, each value must be exactly `performance` or `security`. No other values are valid.
+
+**tags validation:** The `tags` list must include `swf/task`. It should also include the task type (`user-story` or `bugfix`). Flag missing tags as `[WARN]`.
 
 **Correct directory placement:** Check that:
 - Tasks in `todo/` have not been accidentally placed in `in-progress/` or vice versa
@@ -121,30 +126,29 @@ You are invoked during the SPEC and REFINE SPECS phases of the SWF work loop, be
 
 **Feature spec ↔ tasks:** Check that tasks in `specs/work/todo/`, `specs/work/in-progress/`, `specs/work/in-review/`, and `specs/work/blocked/` reference features that have corresponding feature specs. Flag orphaned tasks.
 
-**blocked_by ↔ done:** For tasks in `todo/` that have a `blocked_by` list, check if all referenced tasks are in `done/`. Flag tasks that are in `todo/` but should be in `blocked/` because their dependencies are not yet done.
+**blocked_by ↔ done:** For tasks in `todo/` that have a `blocked_by` frontmatter list, resolve each wikilink and check whether the referenced task file exists in `done/`. Flag tasks that are in `todo/` but should be in `blocked/` because their dependencies are not yet done.
 
 ---
 
-### 6. Obsidian Compatibility (conditional)
-
-**Only apply this section when a `.obsidian` directory exists at the project root.**
+### 6. Obsidian Compatibility
 
 These checks are advisory (`[WARN]` only — they do not block work):
 
-**Frontmatter presence:** Check that each Markdown spec file (`PRD.md`, feature specs, ADRs) has a YAML frontmatter block at the top of the file. Flag files that are missing frontmatter as `[WARN]`.
+**Frontmatter presence:** Check that all Markdown spec files (`PRD.md`, feature specs, ADRs, task specs) have a YAML frontmatter block at the top. Flag files that are missing frontmatter as `[WARN]`.
 
 **Tag conventions:** If frontmatter is present, check that:
 - `PRD.md` has `swf/prd` in its `tags` list
 - Feature spec files have `swf/feature` in their `tags` list
 - ADR files have `swf/adr` in their `tags` list
+- Task spec files have `swf/task` in their `tags` list
 
 Flag missing or incorrect tags as `[WARN]`.
 
 **ADR status tag sync:** For ADR files, check that the value in the `tags` list (`proposed`, `accepted`, or `superseded`) matches the `status` frontmatter field. Flag mismatches as `[WARN]`.
 
-**Wikilink resolution:** For any wikilink of the form `[[features/<name>]]` found in spec files, check that `specs/features/<name>.md` exists. Flag broken wikilinks as `[WARN]`. Apply the same check for `[[adr/<slug>]]` references.
+**Wikilink resolution:** For any wikilink found in spec files, resolve the path and check that the target file exists. Flag broken wikilinks as `[WARN]`. This includes `[[features/<name>]]`, `[[adr/<slug>]]`, and `[[work/done/<task-name>]]` references.
 
-Do not flag the absence of wikilinks as an error — using them is optional even in Obsidian projects.
+Do not flag the absence of optional wikilinks as an error — using them is optional in non-structural content.
 
 ---
 
@@ -182,12 +186,12 @@ Produce a structured validation report:
 
 ---
 
-### Task YAMLs
+### Task Specs
 
-#### specs/work/todo/send-message-user-story.yaml
-[PASS] Schema complete
-[FAIL] feature: "messaging" — no matching file at specs/features/messaging.md
-[WARN] blocked_by references "setup-auth-user-story" which is not in done/ — task may need to move to blocked/
+#### specs/work/todo/send-message-user-story.md
+[PASS] Frontmatter complete
+[FAIL] feature: "[[features/messaging]]" — no matching file at specs/features/messaging.md
+[WARN] blocked_by references "[[work/done/setup-auth-user-story]]" which is not in done/ — task may need to move to blocked/
 
 ---
 
@@ -200,13 +204,14 @@ Produce a structured validation report:
 
 ### Cross-Document Consistency
 [WARN] Roadmap item "Notification System" has no corresponding feature spec in specs/features/
-[FAIL] Task "fix-login-redirect-bugfix.yaml" references feature "login" — no specs/features/login.md found
+[FAIL] Task "fix-login-redirect-bugfix.md" references feature "[[features/login]]" — no specs/features/login.md found
 
 ---
 
 ### Obsidian Compatibility
 [WARN] specs/features/chat.md — missing YAML frontmatter
 [WARN] specs/adr/use-postgresql.md — tags list missing "swf/adr"
+[WARN] specs/work/todo/send-message-user-story.md — tags list missing "swf/task"
 [WARN] specs/features/notifications.md — wikilink [[features/push-service]] not resolved
 ```
 
