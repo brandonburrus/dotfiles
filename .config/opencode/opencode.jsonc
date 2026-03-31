@@ -8,7 +8,7 @@
   "autoupdate": false,
   "mcp": {
     "cog": {
-      "enabled": true,
+      "enabled": false,
       "type": "local",
       "command": ["cog"],
     },
