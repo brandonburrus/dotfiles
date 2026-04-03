@@ -1,4 +1,4 @@
-plugins=(git z zsh-autosuggestions zsh-vi-mode)
+plugins=(git z zsh-autosuggestions zsh-syntax-highlighting zsh-vi-mode)
 
 export ZSHRC=$HOME/.zshrc
 export ZSH=$HOME/.oh-my-zsh
@@ -7,9 +7,6 @@ export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=$HOMEBREW_PREFIX/share/zsh-syntax-highligh
 export ZSH_THEME="agnoster"
 
 source $ZSH/oh-my-zsh.sh
-function zvm_after_init() {
-  source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-}
 
 export ALIASES=$HOME/aliases.sh
 export BUN_INSTALL="$HOME/.bun"

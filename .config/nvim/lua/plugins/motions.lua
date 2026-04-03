@@ -8,19 +8,6 @@ return {
   'lukelbd/vim-toggle', -- Toggle "boolean"-like words
   'tommcdo/vim-exchange', -- Swap two selections
   {
-    'RRethy/nvim-treesitter-textsubjects', -- Text objects based on treesitter parsing
-    config = function()
-      require('nvim-treesitter-textsubjects').configure({
-        prev_selection = ',',
-        keymaps = {
-          ['.'] = 'textsubjects-smart',
-          [';'] = 'textsubjects-container-outer',
-          ['i;'] = 'textsubjects-container-inner',
-        },
-      })
-    end
-  },
-  {
     'Wansmer/treesj', -- Split/join treesitter nodes
     config = function()
       require('treesj').setup({

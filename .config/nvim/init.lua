@@ -21,7 +21,8 @@ vim.opt.undolevels = 10000
 
 vim.opt.guicursor = 'a:blinkon0,n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20'
 vim.opt.cursorline = false
-vim.opt.laststatus = 0
+vim.opt.laststatus = 3
+vim.opt.statusline = ' '
 
 vim.opt.wildmenu = true
 vim.opt.completeopt = 'preview,menu,popup'
@@ -42,8 +43,8 @@ vim.opt.foldmethod = 'indent'
 
 vim.opt.cmdheight = 1
 vim.opt.shell = '/bin/zsh'
-vim.opt.shortmess = 'a'
-vim.opt.showcmd = true
+vim.opt.shortmess = 'aF'
+vim.opt.showcmd = false
 vim.opt.exrc = true
 vim.opt.secure = true
 
