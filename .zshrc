@@ -39,3 +39,8 @@ eval "$(pyenv init - zsh)"
 
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh" 
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/burrubr/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
