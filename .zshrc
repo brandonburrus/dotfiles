@@ -32,6 +32,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH" 
 eval "$(pyenv init - zsh)"
 
+[ -f $HOME/.cargo/env ] && source $HOME/.cargo/env
 [ -f ~/aliases.sh ] && source ~/aliases.sh;
 [ -f ~/.bash_profile ] && source ~/.bash_profile;
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local;

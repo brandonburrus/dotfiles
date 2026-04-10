@@ -1,6 +1,7 @@
 [user]
 	name = Brandon Burrus
 	email = brandon@burrus.io
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG03jM44s88VpYRBtXHGgyGWVnPm2biJFIlHoj8vTDXu
 [core]
 	ignorecase = false
 	editor = nvim
@@ -41,3 +42,9 @@
     untracked = red bold
 [hub]
 	protocol = https
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+[commit]
+	gpgsign = true
